@@ -6,7 +6,6 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Code, Share2 } from "lucide-react";
-import { AIContentUpdater } from "../ai/ai-content-updater";
 
 const web3Projects = [
   {
@@ -30,21 +29,8 @@ const web3Projects = [
 ];
 
 export function Web3Section() {
-    const currentContent = `
-Description: A decentralized lending protocol on Ethereum, enabling users to lend and borrow digital assets seamlessly.
-Project Title: DeFi Protocol 'Aetherium'
-
-Description: A curated platform for digital artists to mint and sell their creations as unique NFTs.
-Project Title: NFT Marketplace 'Chroma'
-
-Description: A flexible and secure framework for creating and managing Decentralized Autonomous Organizations.
-Project Title: DAO Governance 'Agora'
-`;
   return (
     <AnimatedSection id="web3" className="bg-secondary/30">
-        <div className="absolute top-4 right-4">
-            <AIContentUpdater sectionTitle="Web3" content={currentContent} />
-        </div>
       <div className="flex flex-col items-center text-center gap-4 mb-12">
         <div className="inline-block rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary shadow-inner">
             <Share2 className="inline-block h-4 w-4 mr-2" />

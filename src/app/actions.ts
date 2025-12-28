@@ -2,8 +2,7 @@
 "use server";
 
 import { z } from "zod";
-import { updateWebsiteSection as updateWebsiteSectionFlow } from "@/ai/flows/update-website-section";
-import { contactFormSchema, aiUpdateSchema } from "./schemas";
+import { contactFormSchema } from "./schemas";
 import type { ContactFormState } from "./schemas";
 
 
@@ -29,18 +28,4 @@ export async function submitContactForm(prevState: ContactFormState, formData: F
     success: true,
     message: "Your message has been sent successfully!" 
   };
-}
-
-export async function generateContent(input: { sectionDescription: string }) {
-  const parsed = aiUpdateSchema.safeParse(input);
-  if (!parsed.success) {
-    return { error: 'Invalid input' };
-  }
-  try {
-    const result = await updateWebsiteSectionFlow(parsed.data);
-    return { suggestedContent: result.suggestedContent };
-  } catch (e) {
-    console.error(e);
-    return { error: 'Failed to generate content.' };
-  }
 }

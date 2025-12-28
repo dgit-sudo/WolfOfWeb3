@@ -4,17 +4,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import Image from "next/image";
 import { Film, PlayCircle } from "lucide-react";
-import { AIContentUpdater } from "../ai/ai-content-updater";
 
 export function VideoReelSection() {
   const reelThumbnail = PlaceHolderImages.find(img => img.id === "video-reel-thumbnail");
-  const currentContent = `This is the main showcase of my video editing skills, featuring a dynamic compilation of my best work across various genres including corporate videos, music videos, and short films.
-Main Reel: Video Editing Showcase 2024`;
   return (
     <AnimatedSection id="video">
-      <div className="absolute top-4 right-4">
-        <AIContentUpdater sectionTitle="Video Editing" content={currentContent} />
-      </div>
       <div className="flex flex-col items-center text-center gap-4 mb-12">
         <div className="inline-block rounded-full bg-accent/10 px-4 py-2 text-sm font-medium text-accent shadow-inner">
             <Film className="inline-block h-4 w-4 mr-2" />

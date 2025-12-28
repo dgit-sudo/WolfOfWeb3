@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import Image from "next/image";
 import { Megaphone, TrendingUp, Users } from "lucide-react";
-import { AIContentUpdater } from "../ai/ai-content-updater";
 
 const caseStudies = [
   {
@@ -28,21 +27,8 @@ const caseStudies = [
 ];
 
 export function MarketingSection() {
-  const currentContent = `
-Description: Achieved 10M+ impressions in 30 days through a multi-channel viral marketing strategy.
-Project Title: Project Phoenix: Viral Launch
-
-Description: Grew an online community from 0 to 100k members in 6 months using targeted content and engagement tactics.
-Project Title: QuantumLeap: Community Growth
-
-Description: Successfully repositioned a legacy brand for a millennial audience, boosting sales by 40%.
-Project Title: NovaCore: Brand Repositioning
-`;
   return (
     <AnimatedSection id="marketing">
-      <div className="absolute top-4 right-4">
-        <AIContentUpdater sectionTitle="Marketing" content={currentContent} />
-      </div>
       <div className="flex flex-col items-center text-center gap-4 mb-12">
         <div className="inline-block rounded-full bg-accent/10 px-4 py-2 text-sm font-medium text-accent shadow-inner">
             <Megaphone className="inline-block h-4 w-4 mr-2" />
