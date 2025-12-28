@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -9,11 +10,11 @@ import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 
 const navLinks = [
+  { href: '/about', label: 'About' },
   { href: '/marketing', label: 'Marketing' },
   { href: '/web3', label: 'Web3' },
   { href: '/web', label: 'Web' },
   { href: '/video', label: 'Video' },
-  { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];
 
