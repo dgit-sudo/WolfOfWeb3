@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 const navLinks = [
   { href: '#marketing', label: 'Marketing' },
   { href: '#web3', label: 'Web3' },
+  { href: '#web', label: 'Web' },
   { href: '#video', label: 'Video' },
   { href: '#contact', label: 'Contact' },
 ];
