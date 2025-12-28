@@ -12,11 +12,11 @@ export function SplashScreen({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsFadingOut(true);
-    }, 4000); // Start fading out after 4 seconds
+    }, 4500); // Start fading out after 4.5 seconds
 
     const layoutTimer = setTimeout(() => {
       setIsLoading(false);
-    }, 5000); // Remove splash screen from layout after 5 seconds
+    }, 5500); // Remove splash screen from layout after 5.5 seconds
 
     return () => {
       clearTimeout(timer);
@@ -42,7 +42,7 @@ export function SplashScreen({ children }: { children: React.ReactNode }) {
             </div>
             <h1 
                 className="text-2xl font-headline font-bold text-primary opacity-0 animate-[fade-in_1s_ease-out_forwards]"
-                style={{ animationDelay: '2.5s' }}
+                style={{ animationDelay: '4s' }}
             >
                 The Wolf of Web3
             </h1>
