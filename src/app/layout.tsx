@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'SynergyX Portfolio',
+  title: 'The Wolf of Web3 Portfolio',
   description: 'Futuristic portfolio for Marketing, Web3, and Video Editing.',
 };
 

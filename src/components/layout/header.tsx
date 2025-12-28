@@ -44,7 +44,7 @@ export function Header() {
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2" prefetch={false}>
           <Bot className="h-8 w-8 text-primary drop-shadow-[0_0_5px_hsl(var(--primary))]" />
-          <span className="text-xl font-bold font-headline text-primary">SynergyX</span>
+          <span className="text-xl font-bold font-headline text-primary">The Wolf of Web3</span>
         </Link>
         <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
@@ -70,7 +70,7 @@ export function Header() {
               <div className="flex flex-col gap-6 p-6">
                 <Link href="/" className="flex items-center gap-2" prefetch={false}>
                     <Bot className="h-8 w-8 text-primary drop-shadow-[0_0_5px_hsl(var(--primary))]" />
-                    <span className="text-xl font-bold font-headline text-primary">SynergyX</span>
+                    <span className="text-xl font-bold font-headline text-primary">The Wolf of Web3</span>
                 </Link>
                 <nav className="flex flex-col gap-4">
                   {navLinks.map((link) => (
