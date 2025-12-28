@@ -47,7 +47,7 @@ const services = [
   {
     title: "Web Development",
     icon: Code,
-    items-align: ["Brand & product websites", "Conversion-optimized landing pages"]
+    items: ["Brand & product websites", "Conversion-optimized landing pages"]
   },
   {
     title: "Consultancy",
@@ -133,7 +133,7 @@ export default function AboutPage() {
                 </CardHeader>
                 <CardContent className="flex-grow">
                   <ul className="list-disc list-inside text-muted-foreground space-y-2">
-                    {(service.items || service.items-align || []).map((item) => <li key={item}>{item}</li>)}
+                    {(service.items || []).map((item) => <li key={item}>{item}</li>)}
                   </ul>
                 </CardContent>
               </Card>
