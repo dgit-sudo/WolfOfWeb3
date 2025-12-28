@@ -81,3 +81,16 @@
   }
 }
 
+@keyframes draw {
+  to {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+.stroke-dasharray-\[100\] {
+  stroke-dasharray: 100;
+}
+.stroke-dashoffset-\[100\] {
+  stroke-dashoffset: 100;
+}
