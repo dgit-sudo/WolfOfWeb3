@@ -3,6 +3,7 @@
 
 import { useRef, useEffect, useState, type ReactNode, type ElementType } from 'react';
 import { cn } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
 
 type AnimatedSectionProps = {
   children: ReactNode;
@@ -14,8 +15,16 @@ type AnimatedSectionProps = {
 export function AnimatedSection({ children, id, className, as: Component = 'section' }: AnimatedSectionProps) {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
+    // On multi-page setup, we want to animate sections in as soon as the page loads.
+    const isMultiPage = pathname !== '/';
+    if (isMultiPage) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -33,11 +42,11 @@ export function AnimatedSection({ children, id, className, as: Component = 'sect
     }
 
     return () => {
-      if (sectionRef.current) {
+      if (sectionRef.current && !isMultiPage) {
         observer.unobserve(sectionRef.current);
       }
     };
-  }, []);
+  }, [pathname]);
 
   return (
     <Component

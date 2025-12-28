@@ -6,10 +6,6 @@ import { Button } from '@/components/ui/button';
 import { ArrowDown } from 'lucide-react';
 
 export function HeroSection() {
-  const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
   
   return (
     <section id="hero" className="relative h-[90vh] min-h-[600px] w-full flex items-center justify-center text-center overflow-hidden">
@@ -35,10 +31,10 @@ export function HeroSection() {
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_20px_hsl(var(--primary))] transition-shadow">
-              <Link href="#contact" onClick={scrollToContact}>Get in Touch</Link>
+              <Link href="/contact">Get in Touch</Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/10">
-              <Link href="#marketing">
+              <Link href="/marketing">
                 View My Work
                 <ArrowDown className="ml-2 h-4 w-4" />
               </Link>

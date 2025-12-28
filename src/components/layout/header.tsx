@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -7,18 +6,21 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
 
 const navLinks = [
-  { href: '#marketing', label: 'Marketing' },
-  { href: '#web3', label: 'Web3' },
-  { href: '#web', label: 'Web' },
-  { href: '#video', label: 'Video' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/marketing', label: 'Marketing' },
+  { href: '/web3', label: 'Web3' },
+  { href: '/web', label: 'Web' },
+  { href: '/video', label: 'Video' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,12 +29,6 @@ export function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-    setIsMobileMenuOpen(false);
-  };
 
   return (
     <header
@@ -50,8 +46,10 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              onClick={(e) => scrollToSection(e, link.href)}
-              className="font-medium text-foreground/80 transition-colors hover:text-primary"
+              className={cn(
+                "font-medium transition-colors",
+                pathname === link.href ? "text-primary" : "text-foreground/80 hover:text-primary"
+              )}
             >
               {link.label}
             </Link>
@@ -67,7 +65,7 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] bg-background">
               <div className="flex flex-col gap-6 p-6">
-                <Link href="/" className="flex items-center gap-2" prefetch={false}>
+                <Link href="/" className="flex items-center gap-2" prefetch={false} onClick={() => setIsMobileMenuOpen(false)}>
                     <span className="text-xl font-bold font-headline text-primary">The Wolf of Web3</span>
                 </Link>
                 <nav className="flex flex-col gap-4">
@@ -75,8 +73,11 @@ export function Header() {
                     <Link
                       key={link.href}
                       href={link.href}
-                      onClick={(e) => scrollToSection(e, link.href)}
-                      className="text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={cn(
+                        "text-lg font-medium transition-colors",
+                        pathname === link.href ? "text-primary" : "text-foreground/80 hover:text-primary"
+                      )}
                     >
                       {link.label}
                     </Link>
