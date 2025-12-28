@@ -3,7 +3,7 @@
 
 import { z } from "zod";
 import { updateWebsiteSection as updateWebsiteSectionFlow } from "@/ai/flows/update-website-section";
-import { contactFormSchema } from "./schemas";
+import { contactFormSchema, aiUpdateSchema } from "./schemas";
 import type { ContactFormState } from "./schemas";
 
 
@@ -17,7 +17,7 @@ export async function submitContactForm(prevState: ContactFormState, formData: F
   if (!validatedFields.success) {
     return {
       success: false,
-      message: validatedFields.error.errors.map(e => e.message).join(', '),
+      message: validatedFields.error.flatten().fieldErrors.name?.[0] || validatedFields.error.flatten().fieldErrors.email?.[0] || validatedFields.error.flatten().fieldErrors.message?.[0] || 'Invalid input'
     };
   }
   
@@ -30,11 +30,6 @@ export async function submitContactForm(prevState: ContactFormState, formData: F
     message: "Your message has been sent successfully!" 
   };
 }
-
-// AI content updater action
-const aiUpdateSchema = z.object({
-  sectionDescription: z.string(),
-});
 
 export async function generateContent(input: { sectionDescription: string }) {
   const parsed = aiUpdateSchema.safeParse(input);

@@ -11,3 +11,8 @@ export type ContactFormState = {
   success: boolean;
   message: string;
 };
+
+// AI content updater action schema
+export const aiUpdateSchema = z.object({
+  sectionDescription: z.string(),
+});
