@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Logo } from '@/components/logo';
 
 const navLinks = [
   { href: '#marketing', label: 'Marketing' },
@@ -44,7 +43,6 @@ export function Header() {
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2" prefetch={false}>
-          <Logo className="h-8 w-8 text-primary drop-shadow-[0_0_5px_hsl(var(--primary))]" />
           <span className="text-xl font-bold font-headline text-primary">The Wolf of Web3</span>
         </Link>
         <nav className="hidden md:flex items-center gap-6">
@@ -70,7 +68,6 @@ export function Header() {
             <SheetContent side="right" className="w-[300px] bg-background">
               <div className="flex flex-col gap-6 p-6">
                 <Link href="/" className="flex items-center gap-2" prefetch={false}>
-                    <Logo className="h-8 w-8 text-primary drop-shadow-[0_0_5px_hsl(var(--primary))]" />
                     <span className="text-xl font-bold font-headline text-primary">The Wolf of Web3</span>
                 </Link>
                 <nav className="flex flex-col gap-4">
