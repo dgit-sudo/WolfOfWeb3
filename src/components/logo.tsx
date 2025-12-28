@@ -1,4 +1,3 @@
-
 import { cn } from '@/lib/utils';
 import type { SVGProps } from 'react';
 
@@ -14,12 +13,20 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
       strokeLinejoin="round"
       {...props}
     >
-      <path d="M12 2L2 12l10 10 10-10L12 2z" />
-      <path d="M12 2v10l-5 5" />
-      <path d="M12 12l5 5" />
-      <path d="M7 17l5-5" />
-      <path d="M17 7l-5 5" />
-      <path d="M2 12h20" />
+      {/* Wolf Head Outline */}
+      <path d="M12 2L3 8v7l9 5 9-5V8L12 2z" />
+      {/* Snout and Nose */}
+      <path d="M12 11V2" />
+      <path d="M12 11l-2.5 2.5" />
+      <path d="M12 11l2.5 2.5" />
+      {/* Eyes */}
+      <path d="M10 9l-1 1" />
+      <path d="M14 9l1 1" />
+      {/* Gem-like facets */}
+      <path d="M3 8l9 5" />
+      <path d="M21 8l-9 5" />
+      <path d="M3 15l9-5" />
+      <path d="M21 15l-9-5" />
     </svg>
   );
 }
