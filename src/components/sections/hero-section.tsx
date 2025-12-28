@@ -27,7 +27,7 @@ export function HeroSection() {
             Innovate. Create. Elevate.
           </h1>
           <p className="max-w-3xl mx-auto text-lg md:text-xl text-foreground/80">
-            A futurist specializing in marketing, Web3, video editing, and website creation. Driving growth and engagement through cutting-edge digital experiences.
+            A futurist specializing in marketing, Web3, video production, and website creation. Driving growth and engagement through cutting-edge digital experiences.
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_20px_hsl(var(--primary))] transition-shadow">
@@ -41,9 +41,6 @@ export function HeroSection() {
             </Button>
           </div>
         </div>
-      </div>
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-        <ArrowDown className="h-6 w-6 text-foreground/50 animate-bounce" />
       </div>
     </section>
   );
