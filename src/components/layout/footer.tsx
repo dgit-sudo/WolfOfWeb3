@@ -20,7 +20,7 @@ export function Footer() {
                 <Linkedin className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
               </Button>
             </Link>
-            <Link href="#" aria-label="GitHub">
+            <Link href="https://github.com/dgit-sudo" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="icon">
                 <Github className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
               </Button>
