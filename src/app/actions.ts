@@ -25,8 +25,9 @@ export async function submitContactForm(prevState: ContactFormState, formData: F
 
   // Moved transporter and mailOptions inside the action
   const adminEmail = process.env.EMAIL_USER;
+  const emailPass = process.env.EMAIL_PASS;
 
-  if (!process.env.EMAIL_PASS || !adminEmail) {
+  if (!emailPass || !adminEmail) {
       return {
           success: false,
           message: "Email server is not configured. Please contact the administrator."
@@ -37,7 +38,7 @@ export async function submitContactForm(prevState: ContactFormState, formData: F
       service: 'gmail',
       auth: {
           user: adminEmail,
-          pass: process.env.EMAIL_PASS,
+          pass: emailPass.replace(/ /g, ''), // Explicitly remove spaces
       },
   });
   
