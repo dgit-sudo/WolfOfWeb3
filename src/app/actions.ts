@@ -6,16 +6,6 @@ import { contactFormSchema } from "./schemas";
 import type { ContactFormState } from "./schemas";
 import nodemailer from "nodemailer";
 
-const adminEmail = process.env.EMAIL_USER;
-
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: adminEmail,
-        pass: process.env.EMAIL_PASS,
-    },
-});
-
 export async function submitContactForm(prevState: ContactFormState, formData: FormData): Promise<ContactFormState> {
   const validatedFields = contactFormSchema.safeParse({
     name: formData.get('name'),
@@ -33,6 +23,24 @@ export async function submitContactForm(prevState: ContactFormState, formData: F
 
   const { name, email, message } = validatedFields.data;
 
+  // Moved transporter and mailOptions inside the action
+  const adminEmail = process.env.EMAIL_USER;
+
+  if (!process.env.EMAIL_PASS || !adminEmail) {
+      return {
+          success: false,
+          message: "Email server is not configured. Please contact the administrator."
+      }
+  }
+
+  const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+          user: adminEmail,
+          pass: process.env.EMAIL_PASS,
+      },
+  });
+  
   const mailOptions = {
     from: `"${name}" <${email}>`,
     to: adminEmail,
@@ -51,15 +59,6 @@ export async function submitContactForm(prevState: ContactFormState, formData: F
   };
 
   try {
-    // Note: A check for EMAIL_PASS existence was here, but removed for simplicity.
-    // Ensure your .env file is correctly set up with EMAIL_USER and EMAIL_PASS.
-    if (!process.env.EMAIL_PASS || !process.env.EMAIL_USER) {
-        return {
-            success: false,
-            message: "Email server is not configured. Please contact the administrator."
-        }
-    }
-    
     await transporter.sendMail(mailOptions);
     return {
       success: true,
@@ -67,9 +66,11 @@ export async function submitContactForm(prevState: ContactFormState, formData: F
     };
   } catch (error) {
     console.error('Error sending email:', error);
+    // It's helpful to return a more specific error in development
+    const errorMessage = error instanceof Error ? error.message : "An unknown error occurred.";
     return {
       success: false,
-      message: "There was an error sending your message. Please try again later."
+      message: `There was an error sending your message: ${errorMessage}`
     };
   }
 }
