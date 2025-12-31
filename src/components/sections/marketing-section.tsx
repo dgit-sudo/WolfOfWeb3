@@ -30,9 +30,18 @@ export function MarketingSection() {
       </div>
 
       {marketingVideos.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {marketingVideos.map((video) => (
-            <VideoEmbed key={video.id} id={video.id} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+          {marketingVideos.map((video, index) => (
+            <div
+                key={video.id + index}
+                className={
+                    marketingVideos.length % 3 === 1 && index === marketingVideos.length - 1
+                    ? "lg:col-start-2"
+                    : ""
+                }
+            >
+                <VideoEmbed id={video.id} />
+            </div>
           ))}
         </div>
       ) : (
