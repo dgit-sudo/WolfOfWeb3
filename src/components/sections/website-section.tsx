@@ -3,9 +3,29 @@ import { AnimatedSection } from "@/components/layout/animated-section";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import Image from "next/image";
-import { Monitor, Server, Brush } from "lucide-react";
+import { Monitor, Brush } from "lucide-react";
 
-const websiteProjects: any[] = [];
+const websiteProjects = [
+  {
+    title: "KalaSaarth",
+    description: "A vibrant e-commerce platform dedicated to connecting artisans with a global audience, preserving cultural heritage through modern technology.",
+    image: PlaceHolderImages.find(p => p.id === "website-project-kalasaarth"),
+    metric: "Artisan Empowerment"
+  },
+  {
+    title: "Ecotape",
+    description: "A corporate site and data visualization dashboard for an eco-tech firm, showcasing their environmental impact and sustainable solutions.",
+    image: PlaceHolderImages.find(p => p.id === "website-project-ecotape"),
+    metric: "Sustainability Tracking"
+  },
+  {
+    title: "Dropia",
+    description: "A sleek, high-conversion landing page and web app for a SaaS startup, designed to optimize user onboarding and drive subscriptions.",
+    image: PlaceHolderImages.find(p => p.id === "website-project-dropia"),
+    metric: "User Conversion"
+  }
+];
+
 
 export function WebsiteSection() {
   return (
@@ -22,7 +42,7 @@ export function WebsiteSection() {
       </div>
 
       {websiteProjects.length > 0 ? (
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {websiteProjects.map((project) => (
             <Card key={project.title} className="bg-card/50 border-border hover:border-primary transition-colors duration-300 overflow-hidden group">
               <CardHeader className="p-0">

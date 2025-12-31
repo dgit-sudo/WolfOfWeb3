@@ -49,22 +49,22 @@
       "imageHint": "digital art"
     },
     {
-      "id": "website-project-1",
-      "description": "A modern, responsive e-commerce website for a fashion brand, showcasing clean design and intuitive navigation.",
-      "imageUrl": "https://images.unsplash.com/photo-1657812159075-7f0abd98f7b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxlY29tbWVyY2UlMjB3ZWJzaXRlfGVufDB8fHx8MTc2NjgxNzA3NXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "ecommerce website"
+      "id": "website-project-kalasaarth",
+      "description": "A website showcasing handcrafted artisan goods, with a warm, inviting color palette.",
+      "imageUrl": "https://images.unsplash.com/photo-1759607236409-1df137ecb3b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxhcnRpc2FuJTIwY3JhZnRzfGVufDB8fHx8MTc2NzE5OTkzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "artisan crafts"
     },
     {
-      "id": "website-project-2",
-      "description": "A corporate website for a tech startup, featuring a bold, futuristic design and interactive elements.",
-      "imageUrl": "https://images.unsplash.com/photo-1667984550809-ac2a63a4f7b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dGVjaCUyMHdlYnNpdGV8ZW58MHx8fHwxNzY2ODU0NTY2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "tech website"
+      "id": "website-project-ecotape",
+      "description": "A clean, modern website with data visualizations about environmental sustainability.",
+      "imageUrl": "https://images.unsplash.com/photo-1632749238747-1128353a0b49?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxlY28lMjB0ZWNobm9sb2d5fGVufDB8fHx8MTc2NzE5OTkzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "eco technology"
     },
     {
-      "id": "website-project-3",
-      "description": "A portfolio website for a creative agency, with a focus on visual storytelling and immersive user experience.",
-      "imageUrl": "https://images.unsplash.com/photo-1760893107446-58b108d419d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y3JlYXRpdmUlMjBwb3J0Zm9saW98ZW58MHx8fHwxNzY2ODMyODQ2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "creative portfolio"
+      "id": "website-project-dropia",
+      "description": "A screenshot of a sleek software-as-a-service (SaaS) application dashboard.",
+      "imageUrl": "https://images.unsplash.com/photo-1729216205873-a69b634994e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzYWFzJTIwZGFzaGJvYXJkfGVufDB8fHx8MTc2NzEyMDk5MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "saas dashboard"
     },
     {
       "id": "video-reel-thumbnail",
