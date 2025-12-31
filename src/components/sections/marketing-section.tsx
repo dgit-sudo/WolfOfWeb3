@@ -1,11 +1,19 @@
 
 import { AnimatedSection } from "@/components/layout/animated-section";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
-import Image from "next/image";
-import { Megaphone, TrendingUp, Users } from "lucide-react";
+import { Megaphone } from "lucide-react";
+import { VideoEmbed } from "@/components/ui/video-embed";
 
-const caseStudies: any[] = [];
+const marketingVideos = [
+    { id: "cTlwhPnrhis" },
+    { id: "cTlwhPnrhiR" },
+    { id: "cTlwhPnrhi9" },
+    { id: "cTlwhPnrhiW" },
+    { id: "cTlwhPnrhid" },
+    { id: "cTlwhPnrhi7" },
+    { id: "cTlwhPnrhiN" },
+    { id: "cTlwhPnrhiP" },
+    { id: "cTlwhPnrhiS" },
+];
 
 export function MarketingSection() {
   return (
@@ -15,41 +23,16 @@ export function MarketingSection() {
             <Megaphone className="inline-block h-4 w-4 mr-2" />
             Marketing
         </div>
-        <h2 className="text-3xl md:text-4xl font-bold font-headline">Marketing Case Studies</h2>
+        <h2 className="text-3xl md:text-4xl font-bold font-headline">Marketing Showcase</h2>
         <p className="max-w-2xl text-lg text-muted-foreground">
           Driving results through strategic and innovative marketing campaigns.
         </p>
       </div>
 
-      {caseStudies.length > 0 ? (
-        <div className="grid md:grid-cols-3 gap-8">
-          {caseStudies.map((study) => (
-            <Card key={study.title} className="bg-card/50 border-border hover:border-primary transition-colors duration-300 overflow-hidden group">
-              <CardHeader className="p-0">
-                {study.image && (
-                  <div className="aspect-video overflow-hidden">
-                      <Image
-                        src={study.image.imageUrl}
-                        alt={study.image.description}
-                        width={600}
-                        height={400}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        data-ai-hint={study.image.imageHint}
-                      />
-                  </div>
-                )}
-                <div className="p-6 pb-2">
-                  <CardTitle className="font-headline text-xl">{study.title}</CardTitle>
-                  <CardDescription className="mt-2 text-foreground/80">{study.description}</CardDescription>
-                </div>
-              </CardHeader>
-              <CardContent className="p-6 pt-2">
-                <div className="flex items-center gap-2 text-accent font-bold">
-                  <TrendingUp className="h-5 w-5" />
-                  <span>{study.metric}</span>
-                </div>
-              </CardContent>
-            </Card>
+      {marketingVideos.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {marketingVideos.map((video) => (
+            <VideoEmbed key={video.id} id={video.id} />
           ))}
         </div>
       ) : (
