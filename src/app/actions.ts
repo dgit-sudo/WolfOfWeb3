@@ -4,7 +4,17 @@
 import { z } from "zod";
 import { contactFormSchema } from "./schemas";
 import type { ContactFormState } from "./schemas";
+import nodemailer from "nodemailer";
 
+const adminEmail = process.env.EMAIL_USER;
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: adminEmail,
+        pass: process.env.EMAIL_PASS,
+    },
+});
 
 export async function submitContactForm(prevState: ContactFormState, formData: FormData): Promise<ContactFormState> {
   const validatedFields = contactFormSchema.safeParse({
@@ -14,18 +24,51 @@ export async function submitContactForm(prevState: ContactFormState, formData: F
   });
 
   if (!validatedFields.success) {
+    const firstError = Object.values(validatedFields.error.flatten().fieldErrors)[0]?.[0];
     return {
       success: false,
-      message: validatedFields.error.flatten().fieldErrors.name?.[0] || validatedFields.error.flatten().fieldErrors.email?.[0] || validatedFields.error.flatten().fieldErrors.message?.[0] || 'Invalid input'
+      message: firstError || 'Invalid input'
     };
   }
-  
-  // In a real application, you would handle the form submission,
-  // e.g., send an email or save to a database.
-  console.log('New message received:', validatedFields.data);
 
-  return { 
-    success: true,
-    message: "Your message has been sent successfully!" 
+  const { name, email, message } = validatedFields.data;
+
+  const mailOptions = {
+    from: `"${name}" <${email}>`,
+    to: adminEmail,
+    subject: `New Message from ${name} via Portfolio`,
+    text: `You have received a new message from your portfolio contact form.\n\n` +
+          `Name: ${name}\n` +
+          `Email: ${email}\n` +
+          `Message:\n${message}`,
+    html: `<p>You have received a new message from your portfolio contact form.</p>` +
+          `<ul>` +
+          `<li><strong>Name:</strong> ${name}</li>` +
+          `<li><strong>Email:</strong> ${email}</li>` +
+          `</ul>` +
+          `<h3>Message:</h3>` +
+          `<p>${message.replace(/\n/g, '<br>')}</p>`,
   };
+
+  try {
+    if (!process.env.EMAIL_PASS) {
+      console.error("EMAIL_PASS environment variable not set. Email not sent.");
+      return {
+        success: false,
+        message: "The server is not configured to send emails. Please contact the administrator."
+      };
+    }
+    
+    await transporter.sendMail(mailOptions);
+    return {
+      success: true,
+      message: "Your message has been sent successfully!"
+    };
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return {
+      success: false,
+      message: "There was an error sending your message. Please try again later."
+    };
+  }
 }
