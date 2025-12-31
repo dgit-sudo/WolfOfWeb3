@@ -1,7 +1,46 @@
 
+'use client';
+
 import { AnimatedSection } from "@/components/layout/animated-section";
 import { Card, CardContent } from "@/components/ui/card";
 import { Film } from "lucide-react";
+import Script from "next/script";
+
+const videos = [
+    { id: "cTlwhPnrhiM", aspectRatio: "0.562500" },
+    { id: "cTlwhPnrhjn", aspectRatio: "1.777778" },
+    { id: "cTlwhPnrhjV", aspectRatio: "1.777778" },
+    { id: "cTlwhPnrhji", aspectRatio: "1.777778" },
+    { id: "cTlwhPnrhjj", aspectRatio: "1.000000" },
+    { id: "cTlwhPnrhj1", aspectRatio: "1.777778" },
+    { id: "cTlwhPnrhjh", aspectRatio: "1.000000" },
+    { id: "cTlwhPnrhjf", aspectRatio: "1.777778" },
+    { id: "cTlwhPnrhjc", aspectRatio: "1.777778" },
+    { id: "cTlwhPnrhi8", aspectRatio: "1.818182" },
+    { id: "cTlwhPnrhiK", aspectRatio: "0.750903" },
+    { id: "cTlwhPnrhiL", aspectRatio: "0.562500" },
+];
+
+function VideoEmbed({ id, aspectRatio }: { id: string; aspectRatio: string }) {
+    const paddingTop = (1 / parseFloat(aspectRatio)) * 100;
+    return (
+        <Card className="bg-card/50 overflow-hidden">
+            <div
+                className="sp-embed-player"
+                data-id={id}
+                style={{ position: 'relative', width: '100%', paddingTop: `${paddingTop}%`, height: 0 }}
+            >
+                <Script src={`https://go.screenpal.com/consumption/player_appearance/${id}/${aspectRatio}`}></Script>
+                <iframe
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+                    scrolling="no"
+                    src={`https://go.screenpal.com/player/${id}?ff=1&title=0`}
+                    allowFullScreen={true}
+                ></iframe>
+            </div>
+        </Card>
+    );
+}
 
 export function VideoReelSection() {
   return (
@@ -17,8 +56,10 @@ export function VideoReelSection() {
         </p>
       </div>
       
-      <div className="text-center text-muted-foreground">
-        <p>Videos coming soon. Please provide the embed codes.</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {videos.map((video) => (
+            <VideoEmbed key={video.id} id={video.id} aspectRatio={video.aspectRatio} />
+        ))}
       </div>
 
     </AnimatedSection>
