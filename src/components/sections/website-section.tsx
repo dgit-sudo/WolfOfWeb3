@@ -14,15 +14,15 @@ const websiteProjects = [
   },
   {
     title: "Ecotape",
-    description: "A corporate site and data visualization dashboard for an eco-tech firm, showcasing their environmental impact and sustainable solutions.",
+    description: "A platform selling environment-friendly bandages to villagers and poor households across India, focusing on accessibility and social impact.",
     image: PlaceHolderImages.find(p => p.id === "website-project-ecotape"),
-    metric: "Sustainability Tracking"
+    metric: "Community Health"
   },
   {
     title: "Dropia",
-    description: "A sleek, high-conversion landing page and web app for a SaaS startup, designed to optimize user onboarding and drive subscriptions.",
+    description: "A comprehensive dropshipping platform that empowers entrepreneurs to easily set up and manage their online retail businesses.",
     image: PlaceHolderImages.find(p => p.id === "website-project-dropia"),
-    metric: "User Conversion"
+    metric: "E-commerce Automation"
   }
 ];
 

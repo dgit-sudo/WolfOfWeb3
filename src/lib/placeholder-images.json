@@ -56,15 +56,15 @@
     },
     {
       "id": "website-project-ecotape",
-      "description": "A clean, modern website with data visualizations about environmental sustainability.",
+      "description": "An image of sustainable, earth-friendly bandages available in a rural Indian village.",
       "imageUrl": "https://images.unsplash.com/photo-1632749238747-1128353a0b49?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxlY28lMjB0ZWNobm9sb2d5fGVufDB8fHx8MTc2NzE5OTkzNHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "eco technology"
+      "imageHint": "sustainable healthcare"
     },
     {
       "id": "website-project-dropia",
-      "description": "A screenshot of a sleek software-as-a-service (SaaS) application dashboard.",
+      "description": "A screenshot of a sleek dashboard for an e-commerce dropshipping platform.",
       "imageUrl": "https://images.unsplash.com/photo-1729216205873-a69b634994e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzYWFzJTIwZGFzaGJvYXJkfGVufDB8fHx8MTc2NzEyMDk5MHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "saas dashboard"
+      "imageHint": "ecommerce dashboard"
     },
     {
       "id": "video-reel-thumbnail",
