@@ -13,40 +13,22 @@
       "imageHint": "male portrait"
     },
     {
-      "id": "marketing-campaign-1",
-      "description": "Analytics dashboard for a marketing campaign",
-      "imageUrl": "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxkYXRhJTIwYW5hbHl0aWNzfGVufDB8fHx8MTc2Njg2OTc3M3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "data analytics"
-    },
-    {
-      "id": "marketing-campaign-2",
-      "description": "Social media engagement chart",
-      "imageUrl": "https://images.unsplash.com/photo-1724862936518-ae7fcfc052c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzb2NpYWwlMjBtZWRpYXxlbnwwfHx8fDE3NjY3ODg1OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "social media"
-    },
-    {
-      "id": "marketing-campaign-3",
-      "description": "Growth metrics and user acquisition funnel",
-      "imageUrl": "https://images.unsplash.com/photo-1579225663317-c0251b4369bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxidXNpbmVzcyUyMGNoYXJ0fGVufDB8fHx8MTc2Njc5ODM4Nnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "business chart"
-    },
-    {
-      "id": "web3-project-1",
-      "description": "Visualization of a decentralized network",
+      "id": "web3-project-defi",
+      "description": "Visualization of a decentralized finance network",
       "imageUrl": "https://images.unsplash.com/photo-1631864032970-68d79f6b7158?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxibG9ja2NoYWluJTIwbmV0d29ya3xlbnwwfHx8fDE3NjY4MjM1NTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "blockchain network"
+      "imageHint": "DeFi blockchain"
     },
     {
-      "id": "web3-project-2",
-      "description": "User interface of a dApp",
-      "imageUrl": "https://images.unsplash.com/photo-1559028006-448665bd7c7f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjcnlwdG8lMjBpbnRlcmZhY2V8ZW58MHx8fHwxNzY2ODk4MTU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "crypto interface"
-    },
-    {
-      "id": "web3-project-3",
-      "description": "NFT collection artwork showcase",
+      "id": "web3-project-nft",
+      "description": "Showcase of a vibrant NFT collection",
       "imageUrl": "https://images.unsplash.com/photo-1634320714682-ae8b9c9cee60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxkaWdpdGFsJTIwYXJ0fGVufDB8fHx8MTc2Njg4NTQ3MXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "digital art"
+      "imageHint": "NFT art"
+    },
+    {
+      "id": "web3-project-dao",
+      "description": "Interface for a DAO voting and governance platform",
+      "imageUrl": "https://images.unsplash.com/photo-1559028006-448665bd7c7f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjcnlwdG8lMjBpbnRlcmZhY2V8ZW58MHx8fHwxNzY2ODk4MTU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "DAO interface"
     },
     {
       "id": "website-project-kalasaarth",

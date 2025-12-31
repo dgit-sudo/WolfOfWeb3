@@ -7,7 +7,26 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Code, Share2 } from "lucide-react";
 
-const web3Projects: any[] = [];
+const web3Projects = [
+  {
+    title: "DeFiChain Staking Protocol",
+    description: "A secure and decentralized staking platform offering high-yield returns on various crypto assets. Built with a focus on security and user-owned governance.",
+    image: PlaceHolderImages.find(p => p.id === "web3-project-defi"),
+    tags: ["DeFi", "Staking", "Ethereum", "Solidity"]
+  },
+  {
+    title: "Artify NFT Marketplace",
+    description: "A curated marketplace for digital artists to mint and sell their unique creations as NFTs. Featuring low gas fees and a vibrant community.",
+    image: PlaceHolderImages.find(p => p.id === "web3-project-nft"),
+    tags: ["NFT", "Marketplace", "Digital Art", "Polygon"]
+  },
+  {
+    title: "GovernDAO",
+    description: "An all-in-one platform for creating and managing Decentralized Autonomous Organizations (DAOs). Empower your community with transparent voting and proposal systems.",
+    image: PlaceHolderImages.find(p => p.id === "web3-project-dao"),
+    tags: ["DAO", "Governance", "Smart Contracts", "Aragon"]
+  }
+];
 
 export function Web3Section() {
   return (
