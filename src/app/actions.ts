@@ -51,12 +51,13 @@ export async function submitContactForm(prevState: ContactFormState, formData: F
   };
 
   try {
-    if (!process.env.EMAIL_PASS) {
-      console.error("EMAIL_PASS environment variable not set. Email not sent.");
-      return {
-        success: false,
-        message: "The server is not configured to send emails. Please contact the administrator."
-      };
+    // Note: A check for EMAIL_PASS existence was here, but removed for simplicity.
+    // Ensure your .env file is correctly set up with EMAIL_USER and EMAIL_PASS.
+    if (!process.env.EMAIL_PASS || !process.env.EMAIL_USER) {
+        return {
+            success: false,
+            message: "Email server is not configured. Please contact the administrator."
+        }
     }
     
     await transporter.sendMail(mailOptions);
