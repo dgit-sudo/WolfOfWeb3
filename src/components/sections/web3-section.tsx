@@ -7,26 +7,7 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Code, Share2 } from "lucide-react";
 
-const web3Projects = [
-  {
-    title: "DeFi Protocol 'Aetherium'",
-    description: "A decentralized lending protocol on Ethereum, enabling users to lend and borrow digital assets seamlessly.",
-    image: PlaceHolderImages.find(img => img.id === "web3-project-1"),
-    tags: ["DeFi", "Ethereum", "Smart Contracts"],
-  },
-  {
-    title: "NFT Marketplace 'Chroma'",
-    description: "A curated platform for digital artists to mint and sell their creations as unique NFTs.",
-    image: PlaceHolderImages.find(img => img.id === "web3-project-2"),
-    tags: ["NFTs", "Marketplace", "IPFS"],
-  },
-  {
-    title: "DAO Governance 'Agora'",
-    description: "A flexible and secure framework for creating and managing Decentralized Autonomous Organizations.",
-    image: PlaceHolderImages.find(img => img.id === "web3-project-3"),
-    tags: ["DAO", "Governance", "Solidity"],
-  },
-];
+const web3Projects: any[] = [];
 
 export function Web3Section() {
   return (
@@ -42,43 +23,49 @@ export function Web3Section() {
         </p>
       </div>
 
-      <Carousel opts={{ loop: true }} className="w-full">
-        <CarouselContent>
-          {web3Projects.map((project) => (
-            <CarouselItem key={project.title} className="md:basis-1/2 lg:basis-1/3">
-              <div className="p-1 h-full">
-                <Card className="h-full flex flex-col bg-card/50 border-border hover:border-accent transition-colors duration-300">
-                  <CardHeader className="p-0">
-                    {project.image && (
-                      <div className="aspect-video overflow-hidden rounded-t-lg">
-                        <Image
-                          src={project.image.imageUrl}
-                          alt={project.image.description}
-                          width={800}
-                          height={600}
-                          className="w-full h-full object-cover"
-                          data-ai-hint={project.image.imageHint}
-                        />
+      {web3Projects.length > 0 ? (
+        <Carousel opts={{ loop: true }} className="w-full">
+          <CarouselContent>
+            {web3Projects.map((project) => (
+              <CarouselItem key={project.title} className="md:basis-1/2 lg:basis-1/3">
+                <div className="p-1 h-full">
+                  <Card className="h-full flex flex-col bg-card/50 border-border hover:border-accent transition-colors duration-300">
+                    <CardHeader className="p-0">
+                      {project.image && (
+                        <div className="aspect-video overflow-hidden rounded-t-lg">
+                          <Image
+                            src={project.image.imageUrl}
+                            alt={project.image.description}
+                            width={800}
+                            height={600}
+                            className="w-full h-full object-cover"
+                            data-ai-hint={project.image.imageHint}
+                          />
+                        </div>
+                      )}
+                    </CardHeader>
+                    <CardContent className="p-6 flex-grow flex flex-col">
+                      <CardTitle className="font-headline text-xl">{project.title}</CardTitle>
+                      <CardDescription className="mt-2 text-foreground/80 flex-grow">{project.description}</CardDescription>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                          {project.tags.map((tag: any) => (
+                              <Badge key={tag} variant="outline" className="border-accent text-accent">{tag}</Badge>
+                          ))}
                       </div>
-                    )}
-                  </CardHeader>
-                  <CardContent className="p-6 flex-grow flex flex-col">
-                    <CardTitle className="font-headline text-xl">{project.title}</CardTitle>
-                    <CardDescription className="mt-2 text-foreground/80 flex-grow">{project.description}</CardDescription>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                        {project.tags.map(tag => (
-                            <Badge key={tag} variant="outline" className="border-accent text-accent">{tag}</Badge>
-                        ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious className="ml-12 hidden sm:flex" />
-        <CarouselNext className="mr-12 hidden sm:flex" />
-      </Carousel>
+                    </CardContent>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="ml-12 hidden sm:flex" />
+          <CarouselNext className="mr-12 hidden sm:flex" />
+        </Carousel>
+      ) : (
+        <div className="text-center text-muted-foreground">
+          <p>Content coming soon.</p>
+        </div>
+      )}
     </AnimatedSection>
   );
 }
