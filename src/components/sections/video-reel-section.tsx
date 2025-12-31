@@ -7,22 +7,23 @@ import { Film } from "lucide-react";
 import Script from "next/script";
 
 const videos = [
-    { id: "cTlwhPnrhiM", aspectRatio: "0.562500" },
+    { id: "cTlwhPnrhiM", aspectRatio: "1.777778" },
     { id: "cTlwhPnrhjn", aspectRatio: "1.777778" },
     { id: "cTlwhPnrhjV", aspectRatio: "1.777778" },
     { id: "cTlwhPnrhji", aspectRatio: "1.777778" },
-    { id: "cTlwhPnrhjj", aspectRatio: "1.000000" },
+    { id: "cTlwhPnrhjj", aspectRatio: "1.777778" },
     { id: "cTlwhPnrhj1", aspectRatio: "1.777778" },
-    { id: "cTlwhPnrhjh", aspectRatio: "1.000000" },
+    { id: "cTlwhPnrhjh", aspectRatio: "1.777778" },
     { id: "cTlwhPnrhjf", aspectRatio: "1.777778" },
     { id: "cTlwhPnrhjc", aspectRatio: "1.777778" },
-    { id: "cTlwhPnrhi8", aspectRatio: "1.818182" },
-    { id: "cTlwhPnrhiK", aspectRatio: "0.750903" },
-    { id: "cTlwhPnrhiL", aspectRatio: "0.562500" },
+    { id: "cTlwhPnrhi8", aspectRatio: "1.777778" },
+    { id: "cTlwhPnrhiK", aspectRatio: "1.777778" },
+    { id: "cTlwhPnrhiL", aspectRatio: "1.777778" },
 ];
 
 function VideoEmbed({ id, aspectRatio }: { id: string; aspectRatio: string }) {
-    const paddingTop = (1 / parseFloat(aspectRatio)) * 100;
+    // Force a 16:9 aspect ratio for uniform height
+    const paddingTop = (9 / 16) * 100;
     return (
         <Card className="bg-card/50 overflow-hidden">
             <div
