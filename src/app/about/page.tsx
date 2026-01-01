@@ -114,7 +114,7 @@ export default function AboutPage() {
                 </CardHeader>
                 <CardContent className="space-y-4 text-muted-foreground">
                      <p className="text-lg font-semibold text-foreground">Stephen Awele, professionally known as Wolf of Web3, is a Web3 & AI marketing strategist, creative director, and growth operator.</p>
-                    <p>He has worked closely with Ryan Collin, widely regarded as the King of Web3, serving within his operational and assistant team. Through this experience, Stephen gained exposure to advanced Web3 marketing systems and growth strategies that have channeled millions of dollars into the Web3 ecosystem. Ryan Collin remains both his mentor and primary motivation.</p>
+                    <p>He has worked closely with Ryzn Conley, widely regarded as the King of Web3, serving within his operational and assistant team. Through this experience, Stephen gained exposure to advanced Web3 marketing systems and growth strategies that have channeled millions of dollars into the Web3 ecosystem. Ryzn Conley remains both his mentor and primary motivation.</p>
                     <p>Stephen has worked on Bitcoin-related projects, XRP ecosystem projects, and multiple brand-focused campaigns, delivering AI-driven videos, social campaigns, ads, product design, professional camera-shot content, and marketing interviews that position founders and brands as industry leaders.</p>
                 </CardContent>
             </Card>
