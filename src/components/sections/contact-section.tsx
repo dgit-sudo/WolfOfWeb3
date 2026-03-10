@@ -1,52 +1,37 @@
 
 'use client';
 
-import { useActionState } from 'react';
-import { useFormStatus } from 'react-dom';
-import { useEffect } from 'react';
+import { FormEvent } from 'react';
 import { AnimatedSection } from "@/components/layout/animated-section";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Loader2, Send } from "lucide-react";
-import { submitContactForm } from '@/app/actions';
-import type { ContactFormState } from '@/app/schemas';
-import { useToast } from '@/hooks/use-toast';
+import { Mail, Send } from "lucide-react";
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" size="lg" disabled={pending} className="w-full md:w-auto bg-accent text-accent-foreground hover:bg-accent/90 hover:shadow-[0_0_20px_hsl(var(--accent))] transition-shadow">
-      {pending ? (
-        <>
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Sending...
-        </>
-      ) : (
-        <>
-          <Send className="mr-2 h-4 w-4" />
-          Send Message
-        </>
-      )}
-    </Button>
-  );
-}
+const CONTACT_EMAIL = "letsencryptme@gmail.com";
 
 export function ContactSection() {
-  const initialState: ContactFormState = { success: false, message: '' };
-  const [state, formAction] = useActionState(submitContactForm, initialState);
-  const { toast } = useToast();
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-  useEffect(() => {
-    if (state.message) {
-      toast({
-        title: state.success ? 'Success!' : 'Error',
-        description: state.message,
-        variant: state.success ? 'default' : 'destructive',
-      });
-    }
-  }, [state, toast]);
+    const formData = new FormData(event.currentTarget);
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
+
+    const subject = `Portfolio Inquiry from ${name || "Website Visitor"}`;
+    const body = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      "",
+      "Message:",
+      message,
+    ].join("\n");
+
+    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoUrl;
+  };
 
   return (
     <AnimatedSection id="contact" className="bg-secondary/30">
@@ -64,10 +49,10 @@ export function ContactSection() {
       <Card className="max-w-2xl mx-auto bg-card/50 border-border">
         <CardHeader>
           <CardTitle>Contact Form</CardTitle>
-          <CardDescription>Fill out the form below and I'll get back to you as soon as possible.</CardDescription>
+          <CardDescription>Fill out the form below to open your email app and send a message to letsencryptme@gmail.com.</CardDescription>
         </CardHeader>
         <CardContent>
-          <form action={formAction} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <Input
                 id="name"
@@ -99,7 +84,10 @@ export function ContactSection() {
               />
             </div>
             <div className="flex justify-end">
-              <SubmitButton />
+              <Button type="submit" size="lg" className="w-full md:w-auto bg-accent text-accent-foreground hover:bg-accent/90 hover:shadow-[0_0_20px_hsl(var(--accent))] transition-shadow">
+                <Send className="mr-2 h-4 w-4" />
+                Send via Email App
+              </Button>
             </div>
           </form>
         </CardContent>
