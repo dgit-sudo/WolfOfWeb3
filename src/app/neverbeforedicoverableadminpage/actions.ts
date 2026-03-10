@@ -92,9 +92,14 @@ export async function addAdminContentAction(formData: FormData) {
 
   // For blog posts, URL is optional; for others, it's required
   const isBlog = type === "blog";
+  const needsTitleAndDescription = section === "web" || section === "web3" || section === "blog";
   const hasUrl = file instanceof File && file.size > 0 ? true : !!inputUrl;
   
-  if (!isAdminSection(section) || !isAdminContentType(type) || !title || !description) {
+  if (!isAdminSection(section) || !isAdminContentType(type)) {
+    redirect("/neverbeforedicoverableadminpage?error=invalid-input");
+  }
+
+  if (needsTitleAndDescription && (!title || !description)) {
     redirect("/neverbeforedicoverableadminpage?error=invalid-input");
   }
 

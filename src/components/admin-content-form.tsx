@@ -33,6 +33,8 @@ const sectionLabels: { [key in AdminSection]: string } = {
 type ContentFieldsConfig = {
   [key in AdminSection]: {
     title: string;
+    showTitle: boolean;
+    showDescription: boolean;
     showUrl: boolean;
     showFile: boolean;
     showThumbnail: boolean;
@@ -40,52 +42,82 @@ type ContentFieldsConfig = {
     showContent: boolean;
     descriptionLabel: string;
     descriptionPlaceholder: string;
+    titlePlaceholder: string;
+    urlPlaceholder: string;
+    thumbnailPlaceholder: string;
+    tagsPlaceholder: string;
   };
 };
 
 const fieldConfigs: ContentFieldsConfig = {
   marketing: {
     title: "Marketing Video",
+    showTitle: false,
+    showDescription: false,
     showUrl: true,
     showFile: true,
     showThumbnail: true,
     showTags: false,
     showContent: false,
     descriptionLabel: "Description",
-    descriptionPlaceholder: "Describe this marketing video...",
+    descriptionPlaceholder: "Strategic campaign video focused on brand growth and audience conversion.",
+    titlePlaceholder: "Campaign Performance Reel",
+    urlPlaceholder: "ScreenPal ID (e.g., cTlwhPnrhis) or https://video-url",
+    thumbnailPlaceholder: "https://images.example.com/marketing-campaign-thumb.jpg",
+    tagsPlaceholder: "",
   },
   video: {
     title: "Video Production",
+    showTitle: false,
+    showDescription: false,
     showUrl: true,
     showFile: true,
     showThumbnail: true,
     showTags: false,
     showContent: false,
     descriptionLabel: "Description",
-    descriptionPlaceholder: "Describe this video...",
+    descriptionPlaceholder: "High-impact edit showcasing storytelling, pacing, and cinematic transitions.",
+    titlePlaceholder: "Brand Storytelling Cut",
+    urlPlaceholder: "ScreenPal ID (e.g., cTlwhPnrhiM) or https://video-url",
+    thumbnailPlaceholder: "https://images.example.com/video-showcase-thumb.jpg",
+    tagsPlaceholder: "",
   },
   web: {
     title: "Website Project",
+    showTitle: true,
+    showDescription: true,
     showUrl: true,
     showFile: false,
     showThumbnail: true,
     showTags: true,
     showContent: false,
     descriptionLabel: "Description",
-    descriptionPlaceholder: "Describe this website project...",
+    descriptionPlaceholder: "A performant website focused on UX, trust, and conversion for real users.",
+    titlePlaceholder: "KalaSaarth",
+    urlPlaceholder: "https://kalasaarthi.tech",
+    thumbnailPlaceholder: "https://images.example.com/website-project-thumb.jpg",
+    tagsPlaceholder: "E-commerce, UI/UX, SEO",
   },
   web3: {
     title: "Web3 Project",
+    showTitle: true,
+    showDescription: true,
     showUrl: true,
     showFile: false,
     showThumbnail: true,
     showTags: true,
     showContent: false,
     descriptionLabel: "Description",
-    descriptionPlaceholder: "Describe this Web3 project...",
+    descriptionPlaceholder: "Decentralized product with secure smart contracts and community-led governance.",
+    titlePlaceholder: "DeFiChain Staking Protocol",
+    urlPlaceholder: "https://app.example-defi.xyz",
+    thumbnailPlaceholder: "https://images.example.com/web3-project-thumb.jpg",
+    tagsPlaceholder: "DeFi, Staking, Ethereum, Solidity",
   },
   blog: {
     title: "Blog Post",
+    showTitle: true,
+    showDescription: true,
     showUrl: false,
     showFile: false,
     showThumbnail: true,
@@ -93,6 +125,10 @@ const fieldConfigs: ContentFieldsConfig = {
     showContent: true,
     descriptionLabel: "Excerpt",
     descriptionPlaceholder: "Write a brief excerpt for this blog post...",
+    titlePlaceholder: "How Web3 Branding Is Changing in 2026",
+    urlPlaceholder: "",
+    thumbnailPlaceholder: "https://images.example.com/blog-cover.jpg",
+    tagsPlaceholder: "Web3, Marketing, Strategy",
   },
 };
 
@@ -170,21 +206,29 @@ export function AdminContentForm({ initialFeedback }: { initialFeedback: FormFee
 
           <input type="hidden" name="type" value={type} />
 
-          <div className="space-y-2 md:col-span-2">
-            <label htmlFor="title" className="text-sm text-muted-foreground">Title *</label>
-            <Input id="title" name="title" required />
-          </div>
+          {config.showTitle ? (
+            <div className="space-y-2 md:col-span-2">
+              <label htmlFor="title" className="text-sm text-muted-foreground">Title *</label>
+              <Input id="title" name="title" placeholder={config.titlePlaceholder} required />
+            </div>
+          ) : (
+            <input type="hidden" name="title" value="" />
+          )}
 
-          <div className="space-y-2 md:col-span-2">
-            <label htmlFor="description" className="text-sm text-muted-foreground">{config.descriptionLabel} *</label>
-            <Textarea 
-              id="description" 
-              name="description" 
-              placeholder={config.descriptionPlaceholder}
-              rows={4} 
-              required 
-            />
-          </div>
+          {config.showDescription ? (
+            <div className="space-y-2 md:col-span-2">
+              <label htmlFor="description" className="text-sm text-muted-foreground">{config.descriptionLabel} *</label>
+              <Textarea 
+                id="description" 
+                name="description" 
+                placeholder={config.descriptionPlaceholder}
+                rows={4} 
+                required 
+              />
+            </div>
+          ) : (
+            <input type="hidden" name="description" value="" />
+          )}
 
           {config.showContent && (
             <div className="space-y-2 md:col-span-2">
@@ -206,7 +250,7 @@ export function AdminContentForm({ initialFeedback }: { initialFeedback: FormFee
               <Input 
                 id="url" 
                 name="url" 
-                placeholder={section === "marketing" || section === "video" ? "https://... or ScreenPal ID" : "https://..."}
+                placeholder={config.urlPlaceholder}
               />
             </div>
           )}
@@ -223,14 +267,14 @@ export function AdminContentForm({ initialFeedback }: { initialFeedback: FormFee
               <label htmlFor="thumbnailUrl" className="text-sm text-muted-foreground">
                 Thumbnail URL (optional)
               </label>
-              <Input id="thumbnailUrl" name="thumbnailUrl" placeholder="https://..." />
+              <Input id="thumbnailUrl" name="thumbnailUrl" placeholder={config.thumbnailPlaceholder} />
             </div>
           )}
 
           {config.showTags && (
             <div className="space-y-2 md:col-span-2">
               <label htmlFor="tags" className="text-sm text-muted-foreground">Tags (comma-separated, optional)</label>
-              <Input id="tags" name="tags" placeholder="e.g., web3, defi, nft" />
+              <Input id="tags" name="tags" placeholder={config.tagsPlaceholder} />
             </div>
           )}
 

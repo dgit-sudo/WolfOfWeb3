@@ -68,10 +68,12 @@ export async function MarketingSection() {
                 ) : item.type === "video" && isVideoFilePath(item.url) ? (
                   <Card className="bg-card/50 overflow-hidden border-border">
                     <video src={item.url} controls className="w-full aspect-video bg-black" />
-                    <CardContent className="p-4">
-                      <CardTitle className="text-lg">{item.title}</CardTitle>
-                      <CardDescription className="mt-2">{item.description}</CardDescription>
-                    </CardContent>
+                    {(item.title || item.description) ? (
+                      <CardContent className="p-4">
+                        {item.title ? <CardTitle className="text-lg">{item.title}</CardTitle> : null}
+                        {item.description ? <CardDescription className={item.title ? "mt-2" : ""}>{item.description}</CardDescription> : null}
+                      </CardContent>
+                    ) : null}
                   </Card>
                 ) : item.type === "video" ? (
                   <Card className="bg-card/50 overflow-hidden border-border">
@@ -83,10 +85,12 @@ export async function MarketingSection() {
                         allowFullScreen
                       />
                     </div>
-                    <CardContent className="p-4">
-                      <CardTitle className="text-lg">{item.title}</CardTitle>
-                      <CardDescription className="mt-2">{item.description}</CardDescription>
-                    </CardContent>
+                    {(item.title || item.description) ? (
+                      <CardContent className="p-4">
+                        {item.title ? <CardTitle className="text-lg">{item.title}</CardTitle> : null}
+                        {item.description ? <CardDescription className={item.title ? "mt-2" : ""}>{item.description}</CardDescription> : null}
+                      </CardContent>
+                    ) : null}
                   </Card>
                 ) : (
                   <Card className="bg-card/50 border-border">
