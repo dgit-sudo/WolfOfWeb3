@@ -6,6 +6,9 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Code, Share2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { getAdminContentBySection } from "@/lib/admin-db";
 
 const web3Projects = [
   {
@@ -28,7 +31,9 @@ const web3Projects = [
   }
 ];
 
-export function Web3Section() {
+export async function Web3Section() {
+  const adminItems = getAdminContentBySection("web3");
+
   return (
     <AnimatedSection id="web3" className="bg-secondary/30">
       <div className="flex flex-col items-center text-center gap-4 mb-12">
@@ -83,6 +88,39 @@ export function Web3Section() {
       ) : (
         <div className="text-center text-muted-foreground">
           <p>Content coming soon.</p>
+        </div>
+      )}
+
+      {adminItems.length > 0 && (
+        <div className="mt-12 space-y-6">
+          <h3 className="text-2xl font-bold font-headline text-center">Admin Additions</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {adminItems.map((item) => (
+              <Card key={item.id} className="bg-card/50 border-border hover:border-accent transition-colors duration-300 overflow-hidden flex flex-col">
+                {item.thumbnailUrl ? (
+                  <CardHeader className="p-0">
+                    <div className="aspect-video overflow-hidden rounded-t-lg">
+                      <img src={item.thumbnailUrl} alt={item.title} className="w-full h-full object-cover" />
+                    </div>
+                  </CardHeader>
+                ) : null}
+                <CardContent className="p-6 flex-grow flex flex-col">
+                  <CardTitle className="font-headline text-xl">{item.title}</CardTitle>
+                  <CardDescription className="mt-2 text-foreground/80 flex-grow">{item.description}</CardDescription>
+                  {item.tags && item.tags.length > 0 ? (
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {item.tags.map((tag) => (
+                        <Badge key={tag} variant="outline" className="border-accent text-accent">{tag}</Badge>
+                      ))}
+                    </div>
+                  ) : null}
+                  <Button asChild className="mt-6 w-full">
+                    <Link href={item.url} target="_blank" rel="noopener noreferrer">Open Project</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       )}
     </AnimatedSection>

@@ -7,6 +7,7 @@ import { Monitor, Brush, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { getAdminContentBySection } from "@/lib/admin-db";
 
 const websiteProjects = [
   {
@@ -36,7 +37,9 @@ const websiteProjects = [
 ];
 
 
-export function WebsiteSection() {
+export async function WebsiteSection() {
+  const adminItems = getAdminContentBySection("web");
+
   return (
     <AnimatedSection id="web">
       <div className="flex flex-col items-center text-center gap-4 mb-12">
@@ -91,6 +94,40 @@ export function WebsiteSection() {
                       {project.status && <Badge variant="secondary" className="mt-2">{project.status}</Badge>}
                    </div>
                  )}
+              </CardFooter>
+            </Card>
+          ))}
+
+          {adminItems.map((item) => (
+            <Card key={item.id} className="bg-card/50 border-border hover:border-primary transition-colors duration-300 overflow-hidden group flex flex-col">
+              {item.thumbnailUrl ? (
+                <CardHeader className="p-0">
+                  <div className="aspect-video overflow-hidden">
+                    <img
+                      src={item.thumbnailUrl}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                </CardHeader>
+              ) : null}
+              <CardContent className="p-6 pb-4 flex-grow">
+                <CardTitle className="font-headline text-xl">{item.title}</CardTitle>
+                <CardDescription className="mt-2 text-foreground/80">{item.description}</CardDescription>
+                {item.tags && item.tags.length > 0 ? (
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {item.tags.map((tag) => (
+                      <Badge key={tag} variant="outline" className="border-accent text-accent">{tag}</Badge>
+                    ))}
+                  </div>
+                ) : null}
+              </CardContent>
+              <CardFooter className="p-6 pt-0 mt-auto">
+                <Button asChild className="w-full bg-primary/90 text-primary-foreground hover:bg-primary" >
+                  <Link href={item.url} target="_blank" rel="noopener noreferrer">
+                    Visit Site <ExternalLink className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
               </CardFooter>
             </Card>
           ))}

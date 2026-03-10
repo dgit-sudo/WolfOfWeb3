@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Separator } from "@/components/ui/separator";
+import { SecretAdminTrigger } from "@/components/layout/secret-admin-trigger";
 
 const services = [
   {
@@ -93,15 +94,17 @@ export default function AboutPage() {
                         </div>
                     </div>
                      {founderImage && (
+                      <SecretAdminTrigger>
                         <div className="relative w-48 h-48 md:w-full md:h-auto md:aspect-square rounded-full md:rounded-lg overflow-hidden border-4 border-primary/50 mx-auto">
-                            <Image
-                              src={founderImage.imageUrl}
-                              alt="Stephen Awele, Founder of Wolf of Web3"
-                              fill
-                              className="object-cover"
-                              data-ai-hint={founderImage.imageHint}
-                           />
+                          <Image
+                            src={founderImage.imageUrl}
+                            alt="Stephen Awele, Founder of Wolf of Web3"
+                            fill
+                            className="object-cover"
+                            data-ai-hint={founderImage.imageHint}
+                          />
                         </div>
+                      </SecretAdminTrigger>
                     )}
                 </div>
             </Card>
