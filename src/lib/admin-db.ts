@@ -38,6 +38,7 @@ export const createAdminContent = (input: {
   title: string;
   description: string;
   url: string;
+  content?: string;
   thumbnailUrl?: string;
   tags?: string[];
 }) => {

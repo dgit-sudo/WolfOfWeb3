@@ -1,5 +1,5 @@
-export type AdminSection = "marketing" | "video" | "web" | "web3";
-export type AdminContentType = "video" | "website" | "custom";
+export type AdminSection = "marketing" | "video" | "web" | "web3" | "blog";
+export type AdminContentType = "video" | "website" | "blog" | "custom";
 
 export type AdminContentItem = {
   id: string;
@@ -8,6 +8,7 @@ export type AdminContentItem = {
   title: string;
   description: string;
   url: string;
+  content?: string; // For blog posts: full article body
   thumbnailUrl?: string;
   tags?: string[];
   createdAt: string;
@@ -24,7 +25,7 @@ export const isImageFilePath = (value: string) => /\.(png|jpe?g|gif|webp|avif|sv
 export const isRenderableVideo = (value: string) => isScreenPalId(value) || isVideoFilePath(value);
 
 export const isAdminSection = (value: string): value is AdminSection =>
-  value === "marketing" || value === "video" || value === "web" || value === "web3";
+  value === "marketing" || value === "video" || value === "web" || value === "web3" || value === "blog";
 
 export const isAdminContentType = (value: string): value is AdminContentType =>
-  value === "video" || value === "website" || value === "custom";
+  value === "video" || value === "website" || value === "blog" || value === "custom";

@@ -2,33 +2,29 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import type { AdminContentType, AdminSection } from "@/lib/admin-content";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { getAllAdminContent } from "@/lib/admin-db";
-import { addAdminContentAction, deleteAdminContentAction, loginAdmin, logoutAdmin } from "@/app/neverbeforedicoverableadminpage/actions";
+import { loginAdmin, logoutAdmin, deleteAdminContentAction } from "@/app/neverbeforedicoverableadminpage/actions";
+import { AdminContentForm } from "@/components/admin-content-form";
 
 export const dynamic = "force-dynamic";
 
-const sections: AdminSection[] = ["marketing", "video", "web", "web3"];
-const contentTypes: AdminContentType[] = ["video", "website", "custom"];
-
 const getFeedback = (error?: string, success?: string) => {
   if (error === "invalid-password") {
-    return { tone: "error", text: "Incorrect password." };
+    return { tone: "error" as const, text: "Incorrect password." };
   }
 
   if (error === "invalid-input") {
-    return { tone: "error", text: "Title, description, and either a URL or uploaded file are required." };
+    return { tone: "error" as const, text: "Title, description, and either a URL or uploaded file are required." };
   }
 
   if (success === "created") {
-    return { tone: "success", text: "Content added successfully." };
+    return { tone: "success" as const, text: "Content added successfully." };
   }
 
   if (success === "deleted") {
-    return { tone: "success", text: "Content removed." };
+    return { tone: "success" as const, text: "Content removed." };
   }
 
   return null;
@@ -81,83 +77,15 @@ export default async function NeverBeforeDiscoverableAdminPage({
             <CardHeader className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
               <div>
                 <CardTitle>Secret Admin Panel</CardTitle>
-                <CardDescription>Add content to Marketing, Video, Web, and Web3 sections.</CardDescription>
+                <CardDescription>Add content to all sections and manage blog posts.</CardDescription>
               </div>
               <form action={logoutAdmin}>
                 <Button type="submit" variant="outline">Log Out</Button>
               </form>
             </CardHeader>
-            <CardContent>
-              <form action={addAdminContentAction} className="grid gap-4 md:grid-cols-2">
-                <div className="space-y-2">
-                  <label htmlFor="section" className="text-sm text-muted-foreground">Section</label>
-                  <select
-                    id="section"
-                    name="section"
-                    defaultValue="marketing"
-                    className="w-full h-10 rounded-md border border-input bg-background px-3 text-sm"
-                  >
-                    {sections.map((item) => (
-                      <option key={item} value={item}>{item}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="type" className="text-sm text-muted-foreground">Content Type</label>
-                  <select
-                    id="type"
-                    name="type"
-                    defaultValue="video"
-                    className="w-full h-10 rounded-md border border-input bg-background px-3 text-sm"
-                  >
-                    {contentTypes.map((item) => (
-                      <option key={item} value={item}>{item}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="space-y-2 md:col-span-2">
-                  <label htmlFor="title" className="text-sm text-muted-foreground">Title</label>
-                  <Input id="title" name="title" required />
-                </div>
-
-                <div className="space-y-2 md:col-span-2">
-                  <label htmlFor="description" className="text-sm text-muted-foreground">Description</label>
-                  <Textarea id="description" name="description" rows={4} required />
-                </div>
-
-                <div className="space-y-2 md:col-span-2">
-                  <label htmlFor="url" className="text-sm text-muted-foreground">URL or ScreenPal ID</label>
-                  <Input id="url" name="url" placeholder="Use this for websites, embeds, or ScreenPal IDs" />
-                </div>
-
-                <div className="space-y-2 md:col-span-2">
-                  <label htmlFor="file" className="text-sm text-muted-foreground">Upload File (optional)</label>
-                  <Input id="file" name="file" type="file" accept="video/*,image/*" />
-                </div>
-
-                <div className="space-y-2 md:col-span-2">
-                  <label htmlFor="thumbnailUrl" className="text-sm text-muted-foreground">Thumbnail URL (optional)</label>
-                  <Input id="thumbnailUrl" name="thumbnailUrl" />
-                </div>
-
-                <div className="space-y-2 md:col-span-2">
-                  <label htmlFor="tags" className="text-sm text-muted-foreground">Tags, comma-separated (optional)</label>
-                  <Input id="tags" name="tags" />
-                </div>
-
-                <div className="md:col-span-2 flex items-center gap-3">
-                  <Button type="submit">Add Content</Button>
-                  {feedback ? (
-                    <p className={feedback.tone === "error" ? "text-sm text-destructive" : "text-sm text-muted-foreground"}>
-                      {feedback.text}
-                    </p>
-                  ) : null}
-                </div>
-              </form>
-            </CardContent>
           </Card>
+
+          <AdminContentForm initialFeedback={feedback} />
 
           <Card className="bg-card/60 border-border">
             <CardHeader>

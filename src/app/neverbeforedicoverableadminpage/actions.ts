@@ -48,6 +48,7 @@ const revalidateAllContentPaths = () => {
   revalidatePath("/video");
   revalidatePath("/web");
   revalidatePath("/web3");
+  revalidatePath("/blog");
   revalidatePath("/neverbeforedicoverableadminpage");
 };
 
@@ -78,6 +79,7 @@ export async function addAdminContentAction(formData: FormData) {
   const title = String(formData.get("title") ?? "").trim();
   const description = String(formData.get("description") ?? "").trim();
   const inputUrl = String(formData.get("url") ?? "").trim();
+  const content = String(formData.get("content") ?? "").trim();
   const thumbnailUrl = String(formData.get("thumbnailUrl") ?? "").trim();
   const tagsRaw = String(formData.get("tags") ?? "");
   const file = formData.get("file");
@@ -88,7 +90,15 @@ export async function addAdminContentAction(formData: FormData) {
     url = await saveUploadedFile(file);
   }
 
-  if (!isAdminSection(section) || !isAdminContentType(type) || !title || !description || !url) {
+  // For blog posts, URL is optional; for others, it's required
+  const isBlog = type === "blog";
+  const hasUrl = file instanceof File && file.size > 0 ? true : !!inputUrl;
+  
+  if (!isAdminSection(section) || !isAdminContentType(type) || !title || !description) {
+    redirect("/neverbeforedicoverableadminpage?error=invalid-input");
+  }
+
+  if (!isBlog && !hasUrl) {
     redirect("/neverbeforedicoverableadminpage?error=invalid-input");
   }
 
@@ -97,7 +107,8 @@ export async function addAdminContentAction(formData: FormData) {
     type,
     title,
     description,
-    url,
+    url: url || "", // Blog posts can have empty URL
+    content: content || undefined,
     thumbnailUrl: thumbnailUrl || undefined,
     tags: tagsRaw
       .split(",")
