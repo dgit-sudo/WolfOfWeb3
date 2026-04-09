@@ -9,22 +9,30 @@ type Plan = {
   tier: string;
   name: string;
   description: string;
-  wasPrice: string;
-  nowPrice: string;
-  save: string;
+  monthlyPrice: number;
+  annualDiscountPercent: number;
   featured?: boolean;
   featureGroupLabel: string;
   features: Array<{ title: string; detail?: string }>;
 };
+
+const formatCurrency = (value: number) =>
+  new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(value);
+
+const annualPrice = (monthlyPrice: number, annualDiscountPercent: number) =>
+  Math.round(monthlyPrice * 12 * (1 - annualDiscountPercent / 100));
 
 const plans: Plan[] = [
   {
     tier: "Tier 01",
     name: "FOUNDATION",
     description: "Establish your presence. Build the base.",
-    wasPrice: "Was $3,500/mo",
-    nowPrice: "$1,750",
-    save: "Save $1,750/mo",
+    monthlyPrice: 200,
+    annualDiscountPercent: 15,
     featureGroupLabel: "Included",
     features: [
       { title: "AI-Powered Content System", detail: "12 posts/mo — copy, captions & scheduling" },
@@ -38,9 +46,8 @@ const plans: Plan[] = [
     tier: "Tier 02",
     name: "MOMENTUM",
     description: "Full-stack execution. Compounding returns.",
-    wasPrice: "Was $7,500/mo",
-    nowPrice: "$3,750",
-    save: "Save $3,750/mo",
+    monthlyPrice: 500,
+    annualDiscountPercent: 15,
     featured: true,
     featureGroupLabel: "Everything in Foundation, plus",
     features: [
@@ -56,9 +63,8 @@ const plans: Plan[] = [
     tier: "Tier 03",
     name: "DOMINANCE",
     description: "Total ecosystem. Maximum output.",
-    wasPrice: "Was $15,000/mo",
-    nowPrice: "$7,500",
-    save: "Save $7,500/mo",
+    monthlyPrice: 1200,
+    annualDiscountPercent: 15,
     featureGroupLabel: "Everything in Momentum, plus",
     features: [
       { title: "Premium Cinematic Production", detail: "10+ videos/mo incl. long-form & brand films" },
@@ -107,16 +113,20 @@ export function PricingSection() {
 
               <CardContent className="space-y-6">
                 <div className="border-y border-border py-5 space-y-2">
-                  <p className="text-muted-foreground line-through">{plan.wasPrice}</p>
                   <div className="flex items-end gap-2">
                     <p className={plan.featured ? "text-primary text-5xl font-bold font-headline leading-none" : "text-5xl font-bold font-headline leading-none"}>
-                      {plan.nowPrice}
+                      {formatCurrency(plan.monthlyPrice)}
                     </p>
                     <span className="text-muted-foreground pb-1">/ month</span>
                   </div>
-                  <span className="inline-block bg-primary text-primary-foreground text-xs font-semibold px-3 py-1">
-                    {plan.save}
-                  </span>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="inline-block bg-primary text-primary-foreground text-xs font-semibold px-3 py-1">
+                      Annual: {formatCurrency(annualPrice(plan.monthlyPrice, plan.annualDiscountPercent))} / year
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {plan.annualDiscountPercent}% off annual billing
+                    </span>
+                  </div>
                 </div>
 
                 <div className="space-y-4">

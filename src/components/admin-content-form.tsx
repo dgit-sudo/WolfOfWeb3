@@ -55,7 +55,7 @@ const fieldConfigs: ContentFieldsConfig = {
     showTitle: false,
     showDescription: false,
     showUrl: true,
-    showFile: true,
+    showFile: false,
     showThumbnail: true,
     showTags: false,
     showContent: false,
@@ -71,7 +71,7 @@ const fieldConfigs: ContentFieldsConfig = {
     showTitle: false,
     showDescription: false,
     showUrl: true,
-    showFile: true,
+    showFile: false,
     showThumbnail: true,
     showTags: false,
     showContent: false,
@@ -231,17 +231,8 @@ export function AdminContentForm({ initialFeedback }: { initialFeedback: FormFee
                 id="url" 
                 name="url" 
                 placeholder={config.urlPlaceholder}
+                required={section === "marketing" || section === "video"}
               />
-              {(section === "marketing" || section === "video") ? (
-                <p className="text-xs text-muted-foreground">Use exactly one source: either video URL/ID or upload a video file.</p>
-              ) : null}
-            </div>
-          )}
-
-          {config.showFile && (
-            <div className="space-y-2 md:col-span-2">
-              <label htmlFor="file" className="text-sm text-muted-foreground">Upload Video File</label>
-              <Input id="file" name="file" type="file" accept="video/*" />
             </div>
           )}
 

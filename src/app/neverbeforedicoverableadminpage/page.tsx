@@ -25,14 +25,7 @@ const getFeedback = (error?: string, success?: string) => {
   }
 
   if (error === "invalid-input") {
-    return { tone: "error" as const, text: "Invalid input. Marketing/Video require exactly one source (URL or upload). Web/Web3/Blog require title + description." };
-  }
-
-  if (error === "upload-failed") {
-    return {
-      tone: "error" as const,
-      text: "Upload failed. If deployed, configure SUPABASE_SERVICE_ROLE_KEY and create a public 'admin-uploads' storage bucket.",
-    };
+    return { tone: "error" as const, text: "Invalid input. Marketing/Video require a URL only. Web/Web3/Blog require title + description." };
   }
 
   if (success === "created") {
