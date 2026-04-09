@@ -84,17 +84,12 @@ export async function addAdminContentAction(formData: FormData) {
   const tagsRaw = String(formData.get("tags") ?? "");
   const file = formData.get("file");
 
-  let url = inputUrl;
-
-  if (file instanceof File && file.size > 0) {
-    url = await saveUploadedFile(file);
-  }
-
-  // For blog posts, URL is optional; for others, it's required
+  const hasUploadedFile = file instanceof File && file.size > 0;
+  const hasInputUrl = !!inputUrl;
+  const isVideoSection = section === "marketing" || section === "video";
   const isBlog = type === "blog";
   const needsTitleAndDescription = section === "web" || section === "web3" || section === "blog";
-  const hasUrl = file instanceof File && file.size > 0 ? true : !!inputUrl;
-  
+
   if (!isAdminSection(section) || !isAdminContentType(type)) {
     redirect("/neverbeforedicoverableadminpage?error=invalid-input");
   }
@@ -103,8 +98,20 @@ export async function addAdminContentAction(formData: FormData) {
     redirect("/neverbeforedicoverableadminpage?error=invalid-input");
   }
 
-  if (!isBlog && !hasUrl) {
+  // Marketing/Video must receive exactly one source: URL xor uploaded file.
+  if (isVideoSection) {
+    if ((hasInputUrl && hasUploadedFile) || (!hasInputUrl && !hasUploadedFile)) {
+      redirect("/neverbeforedicoverableadminpage?error=invalid-input");
+    }
+  }
+
+  if (!isBlog && !isVideoSection && !hasInputUrl) {
     redirect("/neverbeforedicoverableadminpage?error=invalid-input");
+  }
+
+  let url = inputUrl;
+  if (hasUploadedFile && file instanceof File) {
+    url = await saveUploadedFile(file);
   }
 
   await createAdminContent({

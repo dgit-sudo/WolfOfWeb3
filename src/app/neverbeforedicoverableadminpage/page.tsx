@@ -25,7 +25,7 @@ const getFeedback = (error?: string, success?: string) => {
   }
 
   if (error === "invalid-input") {
-    return { tone: "error" as const, text: "Invalid input. Web/Web3/Blog require title + description; non-blog entries require URL or upload." };
+    return { tone: "error" as const, text: "Invalid input. Marketing/Video require exactly one source (URL or upload). Web/Web3/Blog require title + description." };
   }
 
   if (success === "created") {

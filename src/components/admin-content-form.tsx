@@ -142,26 +142,6 @@ export function AdminContentForm({ initialFeedback }: { initialFeedback: FormFee
   const contentTypes = contentTypesBySection[section];
   const type = contentTypes[0]; // Auto-select the only available type
 
-  const handleSubmit = async (formData: FormData) => {
-    // Set the type dynamically based on section
-    formData.set("type", type);
-    formData.set("section", section);
-    
-    try {
-      await addAdminContentAction(formData);
-      setFeedback({ tone: "success", text: "Content added successfully!" });
-      // Reset form fields
-      const form = (document.activeElement as HTMLButtonElement)?.form;
-      if (form) form.reset();
-      setSection("marketing");
-    } catch (error) {
-      setFeedback({ 
-        tone: "error", 
-        text: "Failed to add content. Please check your inputs." 
-      });
-    }
-  };
-
   return (
     <Card className="bg-card/60 border-border">
       <CardHeader>
@@ -169,7 +149,7 @@ export function AdminContentForm({ initialFeedback }: { initialFeedback: FormFee
         <CardDescription>{config.title}</CardDescription>
       </CardHeader>
       <CardContent>
-        <form action={handleSubmit} className="grid gap-4 md:grid-cols-2">
+        <form action={addAdminContentAction} className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2">
             <label htmlFor="section" className="text-sm text-muted-foreground">Section</label>
             <select
@@ -252,12 +232,15 @@ export function AdminContentForm({ initialFeedback }: { initialFeedback: FormFee
                 name="url" 
                 placeholder={config.urlPlaceholder}
               />
+              {(section === "marketing" || section === "video") ? (
+                <p className="text-xs text-muted-foreground">Use exactly one source: either video URL/ID or upload a video file.</p>
+              ) : null}
             </div>
           )}
 
           {config.showFile && (
             <div className="space-y-2 md:col-span-2">
-              <label htmlFor="file" className="text-sm text-muted-foreground">Upload Video File (optional)</label>
+              <label htmlFor="file" className="text-sm text-muted-foreground">Upload Video File</label>
               <Input id="file" name="file" type="file" accept="video/*" />
             </div>
           )}

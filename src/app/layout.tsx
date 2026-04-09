@@ -30,6 +30,13 @@ export const metadata: Metadata = {
     title: 'The Wolf of Web3 | Web Development, Video Production, Web3 Marketing',
     description: siteConfig.description,
   },
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: ['/icon.svg'],
+    apple: ['/icon.svg'],
+  },
   robots: {
     index: true,
     follow: true,
