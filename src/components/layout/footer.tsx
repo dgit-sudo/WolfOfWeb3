@@ -15,7 +15,7 @@ export function Footer() {
                 <Twitter className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
               </Button>
             </Link>
-            <Link href="#" aria-label="LinkedIn">
+            <Link href="https://www.linkedin.com/in/stephen-awele?utm_source=share_via&utm_content=profile&utm_medium=member_ios" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="icon">
                 <Linkedin className="h-5 w-5 text-muted-foreground transition-colors hover:text-primary" />
               </Button>
