@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { HeroSection } from "@/components/sections/hero-section";
+import { HomeValueSection } from "@/components/sections/home-value-section";
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -18,6 +19,7 @@ export default function Home() {
       <Header />
       <main className="flex-grow">
         <HeroSection />
+        <HomeValueSection />
       </main>
       <Footer />
     </div>
