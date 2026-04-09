@@ -7,8 +7,17 @@ import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { getAllAdminContent } from "@/lib/admin-db";
 import { loginAdmin, logoutAdmin, deleteAdminContentAction } from "@/app/neverbeforedicoverableadminpage/actions";
 import { AdminContentForm } from "@/components/admin-content-form";
+import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Admin Panel",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 const getFeedback = (error?: string, success?: string) => {
   if (error === "invalid-password") {

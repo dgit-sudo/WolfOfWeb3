@@ -8,6 +8,16 @@ import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Separator } from "@/components/ui/separator";
 import { SecretAdminTrigger } from "@/components/layout/secret-admin-trigger";
+import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "About Our Web, Video, and Web3 Agency",
+  description:
+    "Learn about The Wolf of Web3, a growth agency focused on web development, AI-powered content, cinematic video production, and Web3 marketing.",
+  path: "/about",
+  keywords: ["about web development agency", "web3 marketing team", "video production team"],
+});
 
 const services = [
   {

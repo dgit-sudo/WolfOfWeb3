@@ -7,6 +7,30 @@ import { AnimatedSection } from "@/components/layout/animated-section";
 import Link from "next/link";
 import { getAdminContentById, getAdminContentBySection } from "@/lib/admin-db";
 import { BookOpen, ChevronLeft } from "lucide-react";
+import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const post = await getAdminContentById(id);
+
+  if (!post || post.section !== "blog") {
+    return {
+      title: "Blog Post Not Found",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  return buildPageMetadata({
+    title: post.title,
+    description: post.description,
+    path: `/blog/${post.id}`,
+    keywords: post.tags ?? [],
+  });
+}
 
 export default async function BlogPostPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;

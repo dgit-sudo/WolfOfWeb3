@@ -1,25 +1,23 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { VideoReelSection } from "@/components/sections/video-reel-section";
+import { PricingSection } from "@/components/sections/pricing-section";
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = buildPageMetadata({
-  title: "Video Production Portfolio",
+  title: "Pricing Plans for Web, Video, and Growth Services",
   description:
-    "Explore video production work including cinematic edits, promo videos, and short-form content for modern brands.",
-  path: "/video",
-  keywords: ["video production", "video editing", "short form video agency"],
+    "Compare Foundation, Momentum, and Dominance retainer plans for web development, video production, paid ads, and growth strategy.",
+  path: "/pricing",
+  keywords: ["agency pricing", "web development pricing", "video production pricing"],
 });
 
-export default function VideoPage() {
+export default function PricingPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
       <main className="flex-grow">
-        <VideoReelSection />
+        <PricingSection />
       </main>
       <Footer />
     </div>

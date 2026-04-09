@@ -16,6 +16,7 @@ const navLinks = [
   { href: '/web', label: 'Web' },
   { href: '/video', label: 'Video' },
   { href: '/blog', label: 'Blog' },
+  { href: '/pricing', label: 'Pricing' },
   { href: '/contact', label: 'Contact' },
 ];
 
