@@ -19,3 +19,21 @@ DATABASE_URL=postgresql://postgres.nhdskuxlvvtzswbopeaj:YOUR_URL_ENCODED_PASSWOR
 ```
 
 The app auto-creates the `admin_content` table on first use.
+
+## Supabase Storage Setup (Video Uploads)
+
+To upload videos from the admin panel in production, configure Supabase Storage:
+
+1. Create a bucket named `admin-uploads` in Supabase Storage.
+2. Set the bucket visibility to Public.
+3. Add this environment variable:
+
+```env
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+```
+
+Optional (only needed if project ref cannot be derived from `DATABASE_URL`):
+
+```env
+NEXT_PUBLIC_SUPABASE_PROJECT_REF=your_project_ref
+```

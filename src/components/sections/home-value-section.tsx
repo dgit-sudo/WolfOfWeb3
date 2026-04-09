@@ -1,31 +1,40 @@
 import Link from "next/link";
-import { ArrowRight, Film, Globe, Megaphone, Sparkles } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { AnimatedSection } from "@/components/layout/animated-section";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-const serviceHighlights = [
-  {
-    title: "Marketing Systems",
-    description:
-      "Campaign-ready creative, performance strategy, and distribution designed to drive measurable growth.",
-    href: "/marketing",
-    icon: Megaphone,
-  },
-  {
-    title: "Video Production",
-    description:
-      "Short-form and long-form edits built for retention, conversion, and stronger brand storytelling.",
-    href: "/video",
-    icon: Film,
-  },
-  {
-    title: "Web Experiences",
-    description:
-      "Fast, conversion-focused websites and landing pages engineered for real business outcomes.",
-    href: "/web",
-    icon: Globe,
-  },
+const whatYouGetPoints = [
+  "12 posts per month",
+  "30 posts per month expansion",
+  "Captions and copywriting",
+  "Content scheduling included",
+  "Social media management",
+  "Two platform management",
+  "Four platform expansion",
+  "Monthly performance reporting",
+  "One ad account management",
+  "Up to three ad accounts",
+  "Multi-channel ad strategy",
+  "Full-funnel optimization",
+  "Cinematic short-form videos",
+  "Four edited videos monthly",
+  "Premium cinematic production",
+  "Long-form brand films",
+  "Website and CRO optimization",
+  "Landing page optimization",
+  "A/B testing support",
+  "Weekly strategy sessions",
+  "Dedicated Slack access",
+  "Dedicated growth operator",
+  "Quarterly ecosystem audits",
+  "Personalized workflows",
+  "Personalized website creation",
+  "Website maintenance support",
+  "Domain by client",
+  "Roadmap-based execution",
+  "Conversion-first delivery",
+  "Scalable growth systems",
 ];
 
 export function HomeValueSection() {
@@ -50,39 +59,35 @@ export function HomeValueSection() {
           </CardContent>
         </Card>
 
-        <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-            <Sparkles className="h-4 w-4" />
-            What You Get
-          </div>
-          <h2 className="text-3xl md:text-5xl font-bold font-headline tracking-tight">
-            Full-Stack Digital Growth, Not Fragmented Freelance Work
-          </h2>
-          <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-            From content and video to websites and Web3 positioning, every output is aligned to one goal: stronger visibility and higher conversion.
-          </p>
-        </div>
+        <Card className="bg-card/50 border-border">
+          <CardHeader className="space-y-3">
+            <p className="text-xs tracking-[0.2em] uppercase text-primary font-semibold">What You Get</p>
+            <CardTitle className="text-3xl md:text-5xl font-headline leading-tight">
+              Professional Growth Stack Built For Results
+            </CardTitle>
+            <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+              Everything below is included across plan tiers, with increasing depth, speed, and execution support.
+            </p>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {whatYouGetPoints.map((point) => (
+                <div key={point} className="flex items-center gap-2 rounded-md border border-border bg-background/40 px-3 py-2">
+                  <Check className="h-4 w-4 text-primary shrink-0" />
+                  <span className="text-sm text-foreground/90">{point}</span>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {serviceHighlights.map((item) => (
-            <Card key={item.title} className="bg-card/50 border-border hover:border-primary/60 transition-colors">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-xl font-headline">
-                  <item.icon className="h-5 w-5 text-primary" />
-                  {item.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground leading-relaxed">{item.description}</p>
-                <Button asChild variant="ghost" className="px-0 text-primary hover:text-primary hover:bg-transparent">
-                  <Link href={item.href}>
-                    Explore
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="flex justify-center">
+          <Button asChild size="lg" variant="outline" className="text-base md:text-lg px-8 py-6 border-primary/50 text-primary hover:bg-primary/10">
+            <Link href="/pricing">
+              Compare Full Plan Details
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
         </div>
       </div>
     </AnimatedSection>

@@ -48,6 +48,7 @@ const plans: Plan[] = [
       { title: "AI Content System — Expanded", detail: "30 posts/mo across 4 platforms" },
       { title: "Paid Ads — Multi-Channel", detail: "Up to 3 ad accounts — full funnel" },
       { title: "Website / CRO Optimization", detail: "Landing pages, A/B testing & audits" },
+      { title: "Personalized Website Creation & Maintenance", detail: "Custom website setup and monthly upkeep (domain by client)" },
       { title: "Weekly Strategy Sessions", detail: "4 × 60-min + dedicated Slack access" },
     ],
   },
@@ -62,6 +63,7 @@ const plans: Plan[] = [
     features: [
       { title: "Premium Cinematic Production", detail: "10+ videos/mo incl. long-form & brand films" },
       { title: "Full Website Design & Build", detail: "Custom conversion site + ongoing CRO" },
+      { title: "Personalized Website Creation & Maintenance", detail: "Advanced custom build and maintenance support (domain by client)" },
       { title: "Unlimited Paid Ads Management", detail: "All channels — search, social & programmatic" },
       { title: "Dedicated Growth Operator", detail: "Embedded strategist + priority support" },
       { title: "Quarterly Ecosystem Audit", detail: "Deep-dive review + roadmap rebuild" },

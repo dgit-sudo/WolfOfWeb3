@@ -28,6 +28,13 @@ const getFeedback = (error?: string, success?: string) => {
     return { tone: "error" as const, text: "Invalid input. Marketing/Video require exactly one source (URL or upload). Web/Web3/Blog require title + description." };
   }
 
+  if (error === "upload-failed") {
+    return {
+      tone: "error" as const,
+      text: "Upload failed. If deployed, configure SUPABASE_SERVICE_ROLE_KEY and create a public 'admin-uploads' storage bucket.",
+    };
+  }
+
   if (success === "created") {
     return { tone: "success" as const, text: "Content added successfully." };
   }
