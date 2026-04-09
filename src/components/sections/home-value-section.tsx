@@ -32,6 +32,24 @@ export function HomeValueSection() {
   return (
     <AnimatedSection id="home-value" className="pt-10 md:pt-14">
       <div className="space-y-8">
+        <Card className="border-primary/50 bg-gradient-to-r from-primary/20 via-primary/10 to-transparent">
+          <CardContent className="py-10 md:py-14 px-6 md:px-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div className="space-y-2">
+              <p className="text-xs tracking-[0.2em] uppercase text-primary font-semibold">Ready to Start?</p>
+              <h2 className="text-4xl md:text-6xl font-headline font-extrabold tracking-tight text-primary">
+                SEE PRICING
+              </h2>
+              <p className="text-muted-foreground">Compare Foundation, Momentum, and Dominance plans.</p>
+            </div>
+            <Button asChild size="lg" className="text-base md:text-lg px-8 py-6">
+              <Link href="/pricing">
+                Go to Pricing
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
+
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
             <Sparkles className="h-4 w-4" />
