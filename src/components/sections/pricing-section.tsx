@@ -26,12 +26,15 @@ const formatCurrency = (value: number) =>
 const annualPrice = (monthlyPrice: number, annualDiscountPercent: number) =>
   Math.round(monthlyPrice * 12 * (1 - annualDiscountPercent / 100));
 
+const launchMonthlyPrice = (monthlyPrice: number) => Math.round(monthlyPrice / 2);
+const launchEndsAt = new Date("2026-04-11T23:59:59Z");
+
 const plans: Plan[] = [
   {
     tier: "Tier 01",
-    name: "FOUNDATION",
+    name: "STARTER",
     description: "Establish your presence. Build the base.",
-    monthlyPrice: 200,
+    monthlyPrice: 300,
     annualDiscountPercent: 15,
     featureGroupLabel: "Included",
     features: [
@@ -46,10 +49,10 @@ const plans: Plan[] = [
     tier: "Tier 02",
     name: "MOMENTUM",
     description: "Full-stack execution. Compounding returns.",
-    monthlyPrice: 500,
+    monthlyPrice: 700,
     annualDiscountPercent: 15,
     featured: true,
-    featureGroupLabel: "Everything in Foundation, plus",
+    featureGroupLabel: "Everything in Starter, plus",
     features: [
       { title: "Cinematic Short-Form Video", detail: "4 videos/mo — shot, edited & captioned" },
       { title: "AI Content System — Expanded", detail: "30 posts/mo across 4 platforms" },
@@ -78,6 +81,8 @@ const plans: Plan[] = [
 ];
 
 export function PricingSection() {
+  const isLaunchActive = new Date() <= launchEndsAt;
+
   return (
     <AnimatedSection id="pricing" className="bg-secondary/30">
       <div className="max-w-6xl mx-auto space-y-10">
@@ -86,9 +91,11 @@ export function PricingSection() {
           <h1 className="text-4xl md:text-5xl font-bold font-headline leading-tight">
             Choose Your Level of Dominance
           </h1>
-          <Badge className="bg-primary/15 text-primary border border-primary/35 rounded-none px-4 py-2 text-xs tracking-[0.08em] uppercase">
-            Limited Time Launch Pricing - 50% Off All Plans
-          </Badge>
+          {isLaunchActive ? (
+            <Badge className="bg-primary/15 text-primary border border-primary/35 rounded-none px-4 py-2 text-xs tracking-[0.08em] uppercase">
+              Launch Offer - 50% Off Until April 11
+            </Badge>
+          ) : null}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
@@ -113,15 +120,20 @@ export function PricingSection() {
 
               <CardContent className="space-y-6">
                 <div className="border-y border-border py-5 space-y-2">
+                  {isLaunchActive ? (
+                    <p className="text-muted-foreground line-through">
+                      {formatCurrency(plan.monthlyPrice)} / month
+                    </p>
+                  ) : null}
                   <div className="flex items-end gap-2">
                     <p className={plan.featured ? "text-primary text-5xl font-bold font-headline leading-none" : "text-5xl font-bold font-headline leading-none"}>
-                      {formatCurrency(plan.monthlyPrice)}
+                      {formatCurrency(isLaunchActive ? launchMonthlyPrice(plan.monthlyPrice) : plan.monthlyPrice)}
                     </p>
                     <span className="text-muted-foreground pb-1">/ month</span>
                   </div>
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="inline-block bg-primary text-primary-foreground text-xs font-semibold px-3 py-1">
-                      Annual: {formatCurrency(annualPrice(plan.monthlyPrice, plan.annualDiscountPercent))} / year
+                      Annual: {formatCurrency(annualPrice(isLaunchActive ? launchMonthlyPrice(plan.monthlyPrice) : plan.monthlyPrice, plan.annualDiscountPercent))} / year
                     </span>
                     <span className="text-xs text-muted-foreground">
                       {plan.annualDiscountPercent}% off annual billing
@@ -164,7 +176,7 @@ export function PricingSection() {
         </div>
 
         <p className="text-sm text-muted-foreground border-t border-border pt-6">
-          All plans require a 3-month minimum commitment. Ad spend billed separately. Launch pricing locks in for the duration of your initial term.
+          All plans require a 3-month minimum commitment. Ad spend billed separately. Annual billing applies a 15% discount. Launch pricing is 50% off until April 11.
         </p>
       </div>
     </AnimatedSection>
