@@ -8,18 +8,6 @@ import Link from "next/link";
 import { isScreenPalId, isVideoFilePath } from "@/lib/admin-content";
 import { getAdminContentBySection } from "@/lib/admin-db";
 
-const marketingVideos = [
-    { id: "cTlwhPnrhis" },
-    { id: "cTlwhPnrhiR" },
-    { id: "cTlwhPnrhi9" },
-    { id: "cTlwhPnrhiW" },
-    { id: "cTlwhPnrhid" },
-    { id: "cTlwhPnrhi7" },
-    { id: "cTlwhPnrhiN" },
-    { id: "cTlwhPnrhiP" },
-    { id: "cTlwhPnrhiS" },
-];
-
 export async function MarketingSection() {
   const adminItems = getAdminContentBySection("marketing");
 
@@ -36,30 +24,9 @@ export async function MarketingSection() {
         </p>
       </div>
 
-      {marketingVideos.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
-          {marketingVideos.map((video, index) => (
-            <div
-                key={video.id + index}
-                className={
-                    marketingVideos.length % 3 === 1 && index === marketingVideos.length - 1
-                    ? "lg:col-start-2"
-                    : ""
-                }
-            >
-                <VideoEmbed id={video.id} />
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="text-center text-muted-foreground">
-          <p>Content coming soon.</p>
-        </div>
-      )}
-
       {adminItems.length > 0 && (
-        <div className="mt-12 space-y-6">
-          <h3 className="text-2xl font-bold font-headline text-center">Admin Additions</h3>
+        <div className="space-y-6">
+          <h3 className="text-2xl font-bold font-headline text-center">Marketing Videos</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
             {adminItems.map((item) => (
               <div key={item.id}>
@@ -108,6 +75,12 @@ export async function MarketingSection() {
           </div>
         </div>
       )}
+
+      {adminItems.length === 0 ? (
+        <div className="text-center text-muted-foreground">
+          <p>No videos uploaded yet.</p>
+        </div>
+      ) : null}
     </AnimatedSection>
   );
 }

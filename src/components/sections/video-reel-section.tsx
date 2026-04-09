@@ -5,21 +5,6 @@ import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/c
 import { isScreenPalId, isVideoFilePath } from "@/lib/admin-content";
 import { getAdminContentBySection } from "@/lib/admin-db";
 
-const videos = [
-  { id: "cTlwhPnrhiM" },
-  { id: "cTlwhPnrhjn" },
-  { id: "cTlwhPnrhjV" },
-  { id: "cTlwhPnrhji" },
-  { id: "cTlwhPnrhjj" },
-  { id: "cTlwhPnrhj1" },
-  { id: "cTlwhPnrhjh" },
-  { id: "cTlwhPnrhjf" },
-  { id: "cTlwhPnrhjc" },
-  { id: "cTlwhPnrhi8" },
-  { id: "cTlwhPnrhiK" },
-  { id: "cTlwhPnrhiL" },
-];
-
 export async function VideoReelSection() {
   const adminItems = getAdminContentBySection("video");
 
@@ -36,15 +21,9 @@ export async function VideoReelSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {videos.map((video) => (
-          <VideoEmbed key={video.id} id={video.id} />
-        ))}
-      </div>
-
       {adminItems.length > 0 && (
-        <div className="mt-12 space-y-6">
-          <h3 className="text-2xl font-bold font-headline text-center">Admin Additions</h3>
+        <div className="space-y-6">
+          <h3 className="text-2xl font-bold font-headline text-center">Video Showcase</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {adminItems.map((item) => (
               <div key={item.id}>
@@ -83,6 +62,12 @@ export async function VideoReelSection() {
           </div>
         </div>
       )}
+
+      {adminItems.length === 0 ? (
+        <div className="text-center text-muted-foreground">
+          <p>No videos uploaded yet.</p>
+        </div>
+      ) : null}
     </AnimatedSection>
   );
 }
