@@ -34,7 +34,7 @@ const plans: Plan[] = [
     tier: "Tier 01",
     name: "STARTER",
     description: "Establish your presence. Build the base.",
-    monthlyPrice: 300,
+    monthlyPrice: 600,
     annualDiscountPercent: 15,
     featureGroupLabel: "Included",
     features: [
@@ -49,7 +49,7 @@ const plans: Plan[] = [
     tier: "Tier 02",
     name: "MOMENTUM",
     description: "Full-stack execution. Compounding returns.",
-    monthlyPrice: 700,
+    monthlyPrice: 1400,
     annualDiscountPercent: 15,
     featured: true,
     featureGroupLabel: "Everything in Starter, plus",
@@ -66,7 +66,7 @@ const plans: Plan[] = [
     tier: "Tier 03",
     name: "DOMINANCE",
     description: "Total ecosystem. Maximum output.",
-    monthlyPrice: 1200,
+    monthlyPrice: 2400,
     annualDiscountPercent: 15,
     featureGroupLabel: "Everything in Momentum, plus",
     features: [
