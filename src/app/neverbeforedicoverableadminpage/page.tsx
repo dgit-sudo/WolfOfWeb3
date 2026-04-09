@@ -16,7 +16,7 @@ const getFeedback = (error?: string, success?: string) => {
   }
 
   if (error === "invalid-input") {
-    return { tone: "error" as const, text: "Title, description, and either a URL or uploaded file are required." };
+    return { tone: "error" as const, text: "Invalid input. Web/Web3/Blog require title + description; non-blog entries require URL or upload." };
   }
 
   if (success === "created") {
@@ -38,7 +38,7 @@ export default async function NeverBeforeDiscoverableAdminPage({
   const params = (await searchParams) ?? {};
   const isAuthed = await isAdminAuthenticated();
   const feedback = getFeedback(params.error, params.success);
-  const items = isAuthed ? getAllAdminContent() : [];
+  const items = isAuthed ? await getAllAdminContent() : [];
 
   if (!isAuthed) {
     return (

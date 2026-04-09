@@ -32,7 +32,7 @@ const web3Projects = [
 ];
 
 export async function Web3Section() {
-  const adminItems = getAdminContentBySection("web3");
+  const adminItems = await getAdminContentBySection("web3");
 
   return (
     <AnimatedSection id="web3" className="bg-secondary/30">

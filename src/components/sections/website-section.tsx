@@ -38,7 +38,7 @@ const websiteProjects = [
 
 
 export async function WebsiteSection() {
-  const adminItems = getAdminContentBySection("web");
+  const adminItems = await getAdminContentBySection("web");
 
   return (
     <AnimatedSection id="web">

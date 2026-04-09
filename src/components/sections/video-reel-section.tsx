@@ -6,7 +6,7 @@ import { isScreenPalId, isVideoFilePath } from "@/lib/admin-content";
 import { getAdminContentBySection } from "@/lib/admin-db";
 
 export async function VideoReelSection() {
-  const adminItems = getAdminContentBySection("video");
+  const adminItems = await getAdminContentBySection("video");
 
   return (
     <AnimatedSection id="video">

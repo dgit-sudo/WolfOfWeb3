@@ -10,7 +10,7 @@ import { BookOpen, ChevronLeft } from "lucide-react";
 
 export default async function BlogPostPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const post = getAdminContentById(id);
+  const post = await getAdminContentById(id);
 
   if (!post || post.section !== "blog") {
     return (
@@ -28,6 +28,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
       </div>
     );
   }
+
+  const relatedPosts = (await getAdminContentBySection("blog"))
+    .filter((p) => p.id !== post.id)
+    .slice(0, 2);
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
@@ -86,10 +90,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
             <div className="mt-12 space-y-6">
               <h3 className="text-2xl font-bold font-headline">Other Articles</h3>
               <div className="grid md:grid-cols-2 gap-6">
-                {getAdminContentBySection("blog")
-                  .filter((p) => p.id !== post.id)
-                  .slice(0, 2)
-                  .map((relatedPost) => (
+                {relatedPosts.map((relatedPost) => (
                     <Link key={relatedPost.id} href={`/blog/${relatedPost.id}`}>
                       <Card className="bg-card/50 border-border hover:border-primary transition-colors duration-300 overflow-hidden group h-full">
                         {relatedPost.thumbnailUrl ? (
@@ -111,7 +112,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
                         </CardContent>
                       </Card>
                     </Link>
-                  ))}
+                ))}
               </div>
             </div>
           </div>

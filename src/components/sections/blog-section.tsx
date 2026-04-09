@@ -7,7 +7,7 @@ import { getAdminContentBySection } from "@/lib/admin-db";
 import { BookOpen } from "lucide-react";
 
 export async function BlogSection() {
-  const blogPosts = getAdminContentBySection("blog");
+  const blogPosts = await getAdminContentBySection("blog");
 
   return (
     <AnimatedSection id="blog">

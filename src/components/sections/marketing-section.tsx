@@ -9,7 +9,7 @@ import { isScreenPalId, isVideoFilePath } from "@/lib/admin-content";
 import { getAdminContentBySection } from "@/lib/admin-db";
 
 export async function MarketingSection() {
-  const adminItems = getAdminContentBySection("marketing");
+  const adminItems = await getAdminContentBySection("marketing");
 
   return (
     <AnimatedSection id="marketing">

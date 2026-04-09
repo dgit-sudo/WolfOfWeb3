@@ -107,7 +107,7 @@ export async function addAdminContentAction(formData: FormData) {
     redirect("/neverbeforedicoverableadminpage?error=invalid-input");
   }
 
-  createAdminContent({
+  await createAdminContent({
     section,
     type,
     title,
@@ -133,8 +133,8 @@ export async function deleteAdminContentAction(formData: FormData) {
 
   const id = String(formData.get("id") ?? "");
   if (id) {
-    const existing = getAdminContentById(id);
-    deleteAdminContentById(id);
+    const existing = await getAdminContentById(id);
+    await deleteAdminContentById(id);
     if (existing) {
       await deleteUploadedFile(existing.url);
     }
